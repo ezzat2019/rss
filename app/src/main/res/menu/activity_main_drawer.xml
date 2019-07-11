@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_login"
+
+            android:title="Login" />
+        <item
+            android:id="@+id/nav_create_an_account"
+
+            android:title="Create an account" />
+
+    </group>
+
+    <item android:title="Communicate">
+        <menu>
+            <item
+                android:id="@+id/nav_sharks_and_judgments"
+
+                android:title="Sharks and judgments" />
+            <item
+                android:id="@+id/nav_privacy_policy"
+
+                android:title="Privacy policy" />
+        </menu>
+    </item>
+
+</menu>
