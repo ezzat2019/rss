@@ -5,16 +5,85 @@
     android:layout_height="match_parent"
     tools:context=".fragments.MainFragment">
 
-    <com.daimajia.slider.library.SliderLayout
-    android:id="@+id/slider2"
-    android:layout_width="match_parent"
-    android:layout_height="200dp"
-    />
-    <com.daimajia.slider.library.Indicators.PagerIndicator
-    android:id="@+id/custom_indicator"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:gravity="center"
-    />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+      >
+
+      <RelativeLayout
+          android:layout_width="match_parent"
+          android:layout_height="match_parent">
+          <com.daimajia.slider.library.SliderLayout
+              android:id="@+id/slider2"
+              android:layout_width="match_parent"
+              android:layout_height="215dp" />
+
+          <com.daimajia.slider.library.Indicators.PagerIndicator
+              android:id="@+id/custom_indicator"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:gravity="center" />
+          <ImageView
+              android:id="@+id/image_list"
+              android:layout_width="30dp"
+              android:layout_height="30dp"
+              android:layout_alignParentStart="true"
+              android:layout_alignParentTop="true"
+              android:layout_marginStart="15dp"
+
+              android:layout_marginTop="249dp"
+              android:background="@drawable/ic_view_list_main" />
+
+          <androidx.recyclerview.widget.RecyclerView
+              android:id="@+id/rec_main"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_alignParentStart="true"
+              android:layout_alignParentTop="true"
+              android:layout_marginStart="5dp"
+              android:layout_marginTop="273dp"
+              android:paddingLeft="3dp" />
+
+          <FrameLayout
+              android:layout_width="match_parent"
+              android:layout_height="200dp"
+              android:id="@+id/frag1"
+              android:layout_below="@+id/rec_main"
+
+              android:layout_marginStart="-2dp"
+              android:layout_marginTop="48dp"
+            >
+              <include layout="@layout/item_rectangle"/>
+          </FrameLayout>
+          <FrameLayout
+              android:layout_width="match_parent"
+              android:layout_height="200dp"
+              android:layout_below="@+id/frag1"
+              android:id="@+id/frag2"
+
+              android:layout_marginStart="-2dp"
+              android:layout_marginTop="6dp"
+             >
+              <include layout="@layout/item_rectangle"/>
+          </FrameLayout>
+          <FrameLayout
+              android:layout_width="match_parent"
+              android:layout_height="200dp"
+              android:layout_below="@+id/frag2"
+              android:id="@+id/frag3"
+
+              android:layout_marginStart="-2dp"
+              android:layout_marginTop="6dp"
+              >
+              <include layout="@layout/item_rectangle"/>
+          </FrameLayout>
+
+
+      </RelativeLayout>
+    </ScrollView>
+
+
+
 
 </RelativeLayout>
