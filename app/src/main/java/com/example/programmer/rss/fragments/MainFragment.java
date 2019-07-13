@@ -21,6 +21,10 @@ import com.daimajia.slider.library.SliderTypes.BaseSliderView;
 import com.daimajia.slider.library.SliderTypes.TextSliderView;
 import com.daimajia.slider.library.Tricks.ViewPagerEx;
 import com.example.programmer.rss.R;
+import com.example.programmer.rss.adapters.RecycleFrag1Adapter;
+import com.example.programmer.rss.adapters.RecycleFrag2Adapter;
+import com.example.programmer.rss.adapters.RecycleFrag3Adapter;
+import com.example.programmer.rss.adapters.RecycleMain2Adapter;
 import com.example.programmer.rss.adapters.RecycleMainAdapter;
 import com.example.programmer.rss.models.ModelMain;
 import com.example.programmer.rss.ui.OnItemClickMain;
@@ -37,13 +41,19 @@ public class MainFragment extends Fragment implements BaseSliderView.OnSliderCli
 
     // ui
     private SliderLayout mDemoSlider;
-    private RecyclerView recyclerView;
-    private ImageView imageView;
+    private RecyclerView recyclerView,recyclerViewFrag1,recyclerViewFrag2,recyclerViewFrag3,recyclerViewGame;
+    private ImageView imageView,imageView11,imageView22,imageView33;
+
 
 
     // var
     private RecycleMainAdapter adapter;
     private List<ModelMain> modelMains;
+    private RecycleFrag1Adapter frag1Adapter;
+    private RecycleFrag2Adapter frag2Adapter;
+    private RecycleFrag3Adapter frag3Adapter;
+    private RecycleMain2Adapter main2Adapter;
+
 
 
     public MainFragment() {
@@ -68,6 +78,17 @@ public class MainFragment extends Fragment implements BaseSliderView.OnSliderCli
         adapter = new RecycleMainAdapter();
         adapter.setList(modelMains);
 
+        frag1Adapter=new RecycleFrag1Adapter();
+        frag2Adapter=new RecycleFrag2Adapter();
+        frag3Adapter=new RecycleFrag3Adapter();
+        main2Adapter=new RecycleMain2Adapter();
+
+
+        frag1Adapter.setList(modelMains);
+        frag2Adapter.setList(modelMains);
+        frag3Adapter.setList(modelMains);
+        main2Adapter.setList(modelMains);
+
     }
 
     @Override
@@ -86,6 +107,64 @@ public class MainFragment extends Fragment implements BaseSliderView.OnSliderCli
 
         createRecycleView(view);
 
+        createRecycleFrag1(view);
+
+        createRecycleFrag2(view);
+
+        createRecycleFrag3(view);
+
+        createRecycleGame(view);
+
+
+
+    }
+
+    private void createRecycleGame(View view) {
+        recyclerViewGame=view.findViewById(R.id.rec_game);
+        recyclerViewGame.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false));
+        recyclerViewGame.setAdapter(main2Adapter);
+        main2Adapter.setOnItemClick(new OnItemClickMain() {
+            @Override
+            public void onClick(int pos) {
+                Toast.makeText(getContext(), pos+"", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void createRecycleFrag3(View view) {
+        recyclerViewFrag3=view.findViewById(R.id.rec_rectangle3);
+        recyclerViewFrag3.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false));
+        recyclerViewFrag3.setAdapter(frag3Adapter);
+        frag3Adapter.setOnItemClick(new OnItemClickMain() {
+            @Override
+            public void onClick(int pos) {
+                Toast.makeText(getContext(), pos+"", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void createRecycleFrag2(View view) {
+        recyclerViewFrag2=view.findViewById(R.id.rec_rectangle2);
+        recyclerViewFrag2.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false));
+        recyclerViewFrag2.setAdapter(frag2Adapter);
+        frag2Adapter.setOnItemClick(new OnItemClickMain() {
+            @Override
+            public void onClick(int pos) {
+                Toast.makeText(getContext(), pos+"", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void createRecycleFrag1(View view) {
+        recyclerViewFrag1=view.findViewById(R.id.rec_rectangle1);
+        recyclerViewFrag1.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false));
+        recyclerViewFrag1.setAdapter(frag1Adapter);
+       frag1Adapter.setOnItemClick(new OnItemClickMain() {
+           @Override
+           public void onClick(int pos) {
+               Toast.makeText(getContext(), pos+"", Toast.LENGTH_SHORT).show();
+           }
+       });
 
     }
 
@@ -110,6 +189,27 @@ public class MainFragment extends Fragment implements BaseSliderView.OnSliderCli
     private void createImageListener(View view) {
         imageView = view.findViewById(R.id.image_list);
         imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+        imageView11 = view.findViewById(R.id.image_list11);
+        imageView11.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+        imageView22 = view.findViewById(R.id.image_list22);
+        imageView22.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+        imageView33 = view.findViewById(R.id.image_list33);
+        imageView33.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 

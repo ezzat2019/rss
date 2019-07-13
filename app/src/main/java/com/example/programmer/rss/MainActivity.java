@@ -17,6 +17,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
+import com.example.programmer.rss.adapters.RecycleFrag1Adapter;
 import com.example.programmer.rss.adapters.ViewPagerAdapter;
 import com.example.programmer.rss.fragments.ChannelsFragment;
 import com.example.programmer.rss.fragments.MainFragment;
@@ -39,10 +40,12 @@ public class MainActivity extends AppCompatActivity
     private ViewPager viewPager;
     private TabLayout tabLayout;
 
+
     // var
     private Boolean is_back = false;
     private ViewPagerAdapter viewPagerAdapter;
     private List<Fragment> fragmentList;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,13 +82,7 @@ public class MainActivity extends AppCompatActivity
         viewPagerAdapter=new ViewPagerAdapter(getSupportFragmentManager(),fragmentList);
         viewPager.setAdapter(viewPagerAdapter);
         tabLayout.setupWithViewPager(viewPager);
-        viewPager.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View view, MotionEvent motionEvent) {
 
-                return true;
-            }
-        });
 
 
     }

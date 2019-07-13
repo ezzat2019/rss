@@ -54,7 +54,7 @@
               android:layout_marginStart="-2dp"
               android:layout_marginTop="48dp"
             >
-              <include layout="@layout/item_rectangle"/>
+              <include layout="@layout/item_rectangle1"/>
           </FrameLayout>
           <FrameLayout
               android:layout_width="match_parent"
@@ -65,7 +65,7 @@
               android:layout_marginStart="-2dp"
               android:layout_marginTop="6dp"
              >
-              <include layout="@layout/item_rectangle"/>
+              <include layout="@layout/item_rectangle2"/>
           </FrameLayout>
           <FrameLayout
               android:layout_width="match_parent"
@@ -76,7 +76,25 @@
               android:layout_marginStart="-2dp"
               android:layout_marginTop="6dp"
               >
-              <include layout="@layout/item_rectangle"/>
+              <include layout="@layout/item_rectangle3"/>
+          </FrameLayout>
+
+          <FrameLayout
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_below="@+id/frag3"
+              android:id="@+id/frag4"
+
+              android:layout_marginStart="-2dp"
+              android:layout_marginTop="6dp"
+              >
+              <androidx.recyclerview.widget.RecyclerView
+                  android:id="@+id/rec_game"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+
+
+                  android:paddingLeft="3dp" />
           </FrameLayout>
 
 
