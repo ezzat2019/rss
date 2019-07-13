@@ -50,16 +50,18 @@ public class ChannelsFragment extends Fragment {
         super.onCreate(savedInstanceState);
         modelMains = new ArrayList<>();
 
-        modelMains.add(new ModelMain("https://via.placeholder.com/600/637984"));
-        modelMains.add(new ModelMain("https://via.placeholder.com/600/7644fe"));
-        modelMains.add(new ModelMain("https://via.placeholder.com/600/1279e9"));
-        modelMains.add(new ModelMain("https://via.placeholder.com/600/f9f067"));
-        modelMains.add(new ModelMain("https://via.placeholder.com/600/ea51da"));
-        modelMains.add(new ModelMain("https://via.placeholder.com/600/637984"));
-        modelMains.add(new ModelMain("https://via.placeholder.com/600/7644fe"));
-        modelMains.add(new ModelMain("https://via.placeholder.com/600/1279e9"));
-        modelMains.add(new ModelMain("https://via.placeholder.com/600/f9f067"));
-        modelMains.add(new ModelMain("https://via.placeholder.com/600/ea51da"));
+        modelMains.add(new ModelMain(R.drawable.s1));
+        modelMains.add(new ModelMain(R.drawable.s2));
+        modelMains.add(new ModelMain(R.drawable.s3));
+        modelMains.add(new ModelMain(R.drawable.s4));
+        modelMains.add(new ModelMain(R.drawable.s5));
+        modelMains.add(new ModelMain(R.drawable.s6));
+        modelMains.add(new ModelMain(R.drawable.s7));;
+        modelMains.add(new ModelMain(R.drawable.s9));
+        modelMains.add(new ModelMain(R.drawable.s10));
+        modelMains.add(new ModelMain(R.drawable.s5));
+        modelMains.add(new ModelMain(R.drawable.s12));
+        modelMains.add(new ModelMain(R.drawable.s2));
 
 
       channelAdapter=new RecycleChannelAdapter();

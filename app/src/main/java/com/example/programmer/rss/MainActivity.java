@@ -17,8 +17,8 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
-import com.example.programmer.rss.adapters.RecycleFrag1Adapter;
 import com.example.programmer.rss.adapters.ViewPagerAdapter;
+import com.example.programmer.rss.custom_classes.CustomViewPager;
 import com.example.programmer.rss.fragments.ChannelsFragment;
 import com.example.programmer.rss.fragments.MainFragment;
 import com.example.programmer.rss.fragments.ProgramFragment;
@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity
     private SearchView searchView;
     private ImageButton imageButton;
     private Toolbar toolbar;
-    private ViewPager viewPager;
+    private CustomViewPager viewPager;
     private TabLayout tabLayout;
 
 
@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void createListFragments() {
-        fragmentList=new ArrayList<>();
+        fragmentList = new ArrayList<>();
         fragmentList.add(new MainFragment());
         fragmentList.add(new TvSeriesFragment());
         fragmentList.add(new TheMoviesFragment());
@@ -77,9 +77,11 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void createViewPageAndTabLayOut() {
-        viewPager=findViewById(R.id.view_pager);
-        tabLayout=findViewById(R.id.tab);
-        viewPagerAdapter=new ViewPagerAdapter(getSupportFragmentManager(),fragmentList);
+        viewPager = (CustomViewPager)findViewById(R.id.view_pager);
+        viewPager.setPagingEnabled(false);
+
+        tabLayout = findViewById(R.id.tab);
+        viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager(), fragmentList);
         viewPager.setAdapter(viewPagerAdapter);
         tabLayout.setupWithViewPager(viewPager);
 

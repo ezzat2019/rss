@@ -62,16 +62,16 @@ public class TvSeriesFragment extends Fragment  implements BaseSliderView.OnSlid
         super.onCreate(savedInstanceState);
         modelMains = new ArrayList<>();
 
-        modelMains.add(new ModelMain("https://via.placeholder.com/600/637984"));
-        modelMains.add(new ModelMain("https://via.placeholder.com/600/7644fe"));
-        modelMains.add(new ModelMain("https://via.placeholder.com/600/1279e9"));
-        modelMains.add(new ModelMain("https://via.placeholder.com/600/f9f067"));
-        modelMains.add(new ModelMain("https://via.placeholder.com/600/ea51da"));
-        modelMains.add(new ModelMain("https://via.placeholder.com/600/637984"));
-        modelMains.add(new ModelMain("https://via.placeholder.com/600/7644fe"));
-        modelMains.add(new ModelMain("https://via.placeholder.com/600/1279e9"));
-        modelMains.add(new ModelMain("https://via.placeholder.com/600/f9f067"));
-        modelMains.add(new ModelMain("https://via.placeholder.com/600/ea51da"));
+        modelMains.add(new ModelMain(R.drawable.sor1));
+        modelMains.add(new ModelMain(R.drawable.sor2));
+        modelMains.add(new ModelMain(R.drawable.sor3));
+        modelMains.add(new ModelMain(R.drawable.sor4));
+        modelMains.add(new ModelMain(R.drawable.sor5));
+        modelMains.add(new ModelMain(R.drawable.sor6));
+        modelMains.add(new ModelMain(R.drawable.sor7));
+        modelMains.add(new ModelMain(R.drawable.sor8));
+        modelMains.add(new ModelMain(R.drawable.sor9));
+
 
 
         frag1Adapter=new RecycleFrag1Adapter();
@@ -130,7 +130,7 @@ public class TvSeriesFragment extends Fragment  implements BaseSliderView.OnSlid
 
     private void createRecycleFrag2(View view) {
         recyclerViewFrag2=view.findViewById(R.id.rec_rectangle2);
-        recyclerViewFrag2.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false));
+        recyclerViewFrag2.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,true));
         recyclerViewFrag2.setAdapter(frag2Adapter);
         frag2Adapter.setOnItemClick(new OnItemClickMain() {
             @Override
@@ -191,17 +191,18 @@ public class TvSeriesFragment extends Fragment  implements BaseSliderView.OnSlid
         url_maps.put("House of Cards", "http://cdn3.nflximg.net/images/3093/2043093.jpg");
 
         HashMap<String, Integer> file_maps = new HashMap<String, Integer>();
-        file_maps.put("Hannibal", R.drawable.album);
-        file_maps.put("Big Bang Theory", R.drawable.aritist);
-        file_maps.put("House of Cards", R.drawable.aritist);
-        file_maps.put("Game of Thrones", R.drawable.album);
+        file_maps.put("شباب البومب 8", R.drawable.sor5);
+        file_maps.put("ولد العلابه", R.drawable.sor4);
+        file_maps.put("رحيم 2", R.drawable.sor3);
+        file_maps.put("خمسه ونص", R.drawable.sor2);
+        file_maps.put("لا تطفئ الشمعه", R.drawable.sor1);
 
         for (String name : file_maps.keySet()) {
             TextSliderView textSliderView = new TextSliderView(getContext());
             // initialize a SliderLayout
             textSliderView
                     .description(name)
-                    .image("https://via.placeholder.com/600/92c952")
+                    .image(file_maps.get(name))
 
                     .setScaleType(BaseSliderView.ScaleType.Fit)
                     .setOnSliderClickListener(this);
@@ -212,7 +213,7 @@ public class TvSeriesFragment extends Fragment  implements BaseSliderView.OnSlid
         mDemoSlider.setPresetTransformer(SliderLayout.Transformer.Accordion);
         mDemoSlider.setPresetIndicator(SliderLayout.PresetIndicators.Center_Bottom);
         mDemoSlider.setCustomAnimation(new DescriptionAnimation());
-        mDemoSlider.setDuration(4000);
+        mDemoSlider.setDuration(7000);
         mDemoSlider.addOnPageChangeListener(this);
 
     }

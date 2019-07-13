@@ -83,7 +83,7 @@ public void setOnItemClick(OnItemClickMain main)
 
         void bind(ModelMain modelMain)
         {
-            Glide.with(context.getApplicationContext()).load(modelMain.getUri())
+            Glide.with(context.getApplicationContext()).load(modelMain.getSource())
                     .into(circleImageView);
 
         }

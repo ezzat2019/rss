@@ -41,19 +41,17 @@ public class MainFragment extends Fragment implements BaseSliderView.OnSliderCli
 
     // ui
     private SliderLayout mDemoSlider;
-    private RecyclerView recyclerView,recyclerViewFrag1,recyclerViewFrag2,recyclerViewFrag3,recyclerViewGame;
-    private ImageView imageView,imageView11,imageView22,imageView33;
-
+    private RecyclerView recyclerView, recyclerViewFrag1, recyclerViewFrag2, recyclerViewFrag3, recyclerViewGame;
+    private ImageView imageView, imageView11, imageView22, imageView33;
 
 
     // var
     private RecycleMainAdapter adapter;
-    private List<ModelMain> modelMains;
+    private List<ModelMain> modelMains, listLast, listDramaEgy, listGame;
     private RecycleFrag1Adapter frag1Adapter;
     private RecycleFrag2Adapter frag2Adapter;
     private RecycleFrag3Adapter frag3Adapter;
     private RecycleMain2Adapter main2Adapter;
-
 
 
     public MainFragment() {
@@ -64,29 +62,57 @@ public class MainFragment extends Fragment implements BaseSliderView.OnSliderCli
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         modelMains = new ArrayList<>();
+        listLast = new ArrayList<>();
+        listDramaEgy = new ArrayList<>();
+        listGame = new ArrayList<>();
 
-        modelMains.add(new ModelMain("https://via.placeholder.com/600/637984"));
-        modelMains.add(new ModelMain("https://via.placeholder.com/600/7644fe"));
-        modelMains.add(new ModelMain("https://via.placeholder.com/600/1279e9"));
-        modelMains.add(new ModelMain("https://via.placeholder.com/600/f9f067"));
-        modelMains.add(new ModelMain("https://via.placeholder.com/600/ea51da"));
-        modelMains.add(new ModelMain("https://via.placeholder.com/600/637984"));
-        modelMains.add(new ModelMain("https://via.placeholder.com/600/7644fe"));
-        modelMains.add(new ModelMain("https://via.placeholder.com/600/1279e9"));
-        modelMains.add(new ModelMain("https://via.placeholder.com/600/f9f067"));
-        modelMains.add(new ModelMain("https://via.placeholder.com/600/ea51da"));
+        listGame.add(new ModelMain(R.drawable.sor33));
+        listGame.add(new ModelMain(R.drawable.sor44));
+        listGame.add(new ModelMain(R.drawable.sor55));
+        listGame.add(new ModelMain(R.drawable.sor66));
+        listGame.add(new ModelMain(R.drawable.sor77));
+        listGame.add(new ModelMain(R.drawable.sor99));
+
+
+        listDramaEgy.add(new ModelMain(R.drawable.sor18));
+        listDramaEgy.add(new ModelMain(R.drawable.sor19));
+        listDramaEgy.add(new ModelMain(R.drawable.sor20));
+        listDramaEgy.add(new ModelMain(R.drawable.sor12));
+        listDramaEgy.add(new ModelMain(R.drawable.sor22));
+        listDramaEgy.add(new ModelMain(R.drawable.sor5));
+        listDramaEgy.add(new ModelMain(R.drawable.sor2));
+
+
+        listLast.add(new ModelMain(R.drawable.sor11));
+        listLast.add(new ModelMain(R.drawable.sor12));
+        listLast.add(new ModelMain(R.drawable.sor13));
+        listLast.add(new ModelMain(R.drawable.sor14));
+        listLast.add(new ModelMain(R.drawable.sor15));
+        listLast.add(new ModelMain(R.drawable.sor16));
+        listLast.add(new ModelMain(R.drawable.sor17));
+
+        modelMains.add(new ModelMain(R.drawable.sor1));
+        modelMains.add(new ModelMain(R.drawable.sor2));
+        modelMains.add(new ModelMain(R.drawable.sor3));
+        modelMains.add(new ModelMain(R.drawable.sor4));
+        modelMains.add(new ModelMain(R.drawable.sor5));
+        modelMains.add(new ModelMain(R.drawable.sor6));
+        modelMains.add(new ModelMain(R.drawable.sor7));
+        modelMains.add(new ModelMain(R.drawable.sor8));
+        modelMains.add(new ModelMain(R.drawable.sor9));
+
         adapter = new RecycleMainAdapter();
-        adapter.setList(modelMains);
+        adapter.setList(listGame);
 
-        frag1Adapter=new RecycleFrag1Adapter();
-        frag2Adapter=new RecycleFrag2Adapter();
-        frag3Adapter=new RecycleFrag3Adapter();
-        main2Adapter=new RecycleMain2Adapter();
+        frag1Adapter = new RecycleFrag1Adapter();
+        frag2Adapter = new RecycleFrag2Adapter();
+        frag3Adapter = new RecycleFrag3Adapter();
+        main2Adapter = new RecycleMain2Adapter();
 
 
         frag1Adapter.setList(modelMains);
-        frag2Adapter.setList(modelMains);
-        frag3Adapter.setList(modelMains);
+        frag2Adapter.setList(listLast);
+        frag3Adapter.setList(listDramaEgy);
         main2Adapter.setList(modelMains);
 
     }
@@ -116,55 +142,54 @@ public class MainFragment extends Fragment implements BaseSliderView.OnSliderCli
         createRecycleGame(view);
 
 
-
     }
 
     private void createRecycleGame(View view) {
-        recyclerViewGame=view.findViewById(R.id.rec_game);
-        recyclerViewGame.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false));
+        recyclerViewGame = view.findViewById(R.id.rec_game);
+        recyclerViewGame.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
         recyclerViewGame.setAdapter(main2Adapter);
         main2Adapter.setOnItemClick(new OnItemClickMain() {
             @Override
             public void onClick(int pos) {
-                Toast.makeText(getContext(), pos+"", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), pos + "", Toast.LENGTH_SHORT).show();
             }
         });
     }
 
     private void createRecycleFrag3(View view) {
-        recyclerViewFrag3=view.findViewById(R.id.rec_rectangle3);
-        recyclerViewFrag3.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false));
+        recyclerViewFrag3 = view.findViewById(R.id.rec_rectangle3);
+        recyclerViewFrag3.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, true));
         recyclerViewFrag3.setAdapter(frag3Adapter);
         frag3Adapter.setOnItemClick(new OnItemClickMain() {
             @Override
             public void onClick(int pos) {
-                Toast.makeText(getContext(), pos+"", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), pos + "", Toast.LENGTH_SHORT).show();
             }
         });
     }
 
     private void createRecycleFrag2(View view) {
-        recyclerViewFrag2=view.findViewById(R.id.rec_rectangle2);
-        recyclerViewFrag2.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false));
+        recyclerViewFrag2 = view.findViewById(R.id.rec_rectangle2);
+        recyclerViewFrag2.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
         recyclerViewFrag2.setAdapter(frag2Adapter);
         frag2Adapter.setOnItemClick(new OnItemClickMain() {
             @Override
             public void onClick(int pos) {
-                Toast.makeText(getContext(), pos+"", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), pos + "", Toast.LENGTH_SHORT).show();
             }
         });
     }
 
     private void createRecycleFrag1(View view) {
-        recyclerViewFrag1=view.findViewById(R.id.rec_rectangle1);
-        recyclerViewFrag1.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false));
+        recyclerViewFrag1 = view.findViewById(R.id.rec_rectangle1);
+        recyclerViewFrag1.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
         recyclerViewFrag1.setAdapter(frag1Adapter);
-       frag1Adapter.setOnItemClick(new OnItemClickMain() {
-           @Override
-           public void onClick(int pos) {
-               Toast.makeText(getContext(), pos+"", Toast.LENGTH_SHORT).show();
-           }
-       });
+        frag1Adapter.setOnItemClick(new OnItemClickMain() {
+            @Override
+            public void onClick(int pos) {
+                Toast.makeText(getContext(), pos + "", Toast.LENGTH_SHORT).show();
+            }
+        });
 
     }
 
@@ -177,10 +202,9 @@ public class MainFragment extends Fragment implements BaseSliderView.OnSliderCli
         adapter.setOnItemClick(new OnItemClickMain() {
             @Override
             public void onClick(int pos) {
-                Toast.makeText(getContext(), pos+"", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), pos + "", Toast.LENGTH_SHORT).show();
             }
         });
-
 
 
     }
@@ -226,17 +250,18 @@ public class MainFragment extends Fragment implements BaseSliderView.OnSliderCli
         url_maps.put("House of Cards", "http://cdn3.nflximg.net/images/3093/2043093.jpg");
 
         HashMap<String, Integer> file_maps = new HashMap<String, Integer>();
-        file_maps.put("Hannibal", R.drawable.album);
-        file_maps.put("Big Bang Theory", R.drawable.aritist);
-        file_maps.put("House of Cards", R.drawable.aritist);
-        file_maps.put("Game of Thrones", R.drawable.album);
+        file_maps.put("لا تطفئ الشمعه", R.drawable.sor1);
+        file_maps.put("خمسه ونص", R.drawable.sor2);
+        file_maps.put("رحيم 2", R.drawable.sor3);
+        file_maps.put("ولد العلابه", R.drawable.sor4);
+        file_maps.put("شباب البومب 8", R.drawable.sor5);
 
         for (String name : file_maps.keySet()) {
             TextSliderView textSliderView = new TextSliderView(getContext());
             // initialize a SliderLayout
             textSliderView
                     .description(name)
-                    .image("https://via.placeholder.com/600/92c952")
+                    .image(file_maps.get(name))
 
                     .setScaleType(BaseSliderView.ScaleType.Fit)
                     .setOnSliderClickListener(this);
@@ -247,7 +272,7 @@ public class MainFragment extends Fragment implements BaseSliderView.OnSliderCli
         mDemoSlider.setPresetTransformer(SliderLayout.Transformer.Accordion);
         mDemoSlider.setPresetIndicator(SliderLayout.PresetIndicators.Center_Bottom);
         mDemoSlider.setCustomAnimation(new DescriptionAnimation());
-        mDemoSlider.setDuration(4000);
+        mDemoSlider.setDuration(6000);
         mDemoSlider.addOnPageChangeListener(this);
 
     }
