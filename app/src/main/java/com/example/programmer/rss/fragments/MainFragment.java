@@ -1,6 +1,7 @@
 package com.example.programmer.rss.fragments;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -21,6 +22,7 @@ import com.daimajia.slider.library.SliderTypes.BaseSliderView;
 import com.daimajia.slider.library.SliderTypes.TextSliderView;
 import com.daimajia.slider.library.Tricks.ViewPagerEx;
 import com.example.programmer.rss.R;
+import com.example.programmer.rss.VideoPlayMain2Activity;
 import com.example.programmer.rss.adapters.RecycleFrag1Adapter;
 import com.example.programmer.rss.adapters.RecycleFrag2Adapter;
 import com.example.programmer.rss.adapters.RecycleFrag3Adapter;
@@ -286,7 +288,9 @@ public class MainFragment extends Fragment implements BaseSliderView.OnSliderCli
 
     @Override
     public void onSliderClick(BaseSliderView slider) {
-        Toast.makeText(getContext(), slider.getBundle().get("extra") + "", Toast.LENGTH_SHORT).show();
+        Intent intent=new Intent(getContext(), VideoPlayMain2Activity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
     }
 
 

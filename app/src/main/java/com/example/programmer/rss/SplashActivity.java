@@ -4,18 +4,14 @@ package com.example.programmer.rss;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 
 import com.daimajia.slider.library.SliderLayout;
-import com.daimajia.slider.library.SliderTypes.BaseSliderView;
-import com.daimajia.slider.library.Tricks.ViewPagerEx;
 
 
-public class SplashActivity extends AppCompatActivity  {
+public class SplashActivity extends AppCompatActivity {
     private SliderLayout mDemoSlider;
 
     @Override
@@ -27,29 +23,24 @@ public class SplashActivity extends AppCompatActivity  {
         gotoStartScreen();
 
 
-
-
     }
 
     private void gotoStartScreen() {
-        final Intent intent = new Intent(this, MainActivity.class);
+        final Intent intent = new Intent(getBaseContext(), MainActivity.class);
 
-        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
 
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
                 finish();
 
             }
         }, 1000);
     }
-
-
-
 
 
 }

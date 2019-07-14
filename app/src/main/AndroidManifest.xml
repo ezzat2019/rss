@@ -13,10 +13,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppStart">
         <activity
+            android:name=".VideoPlayMain2Activity"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme" />
+        <activity
             android:name=".MainActivity"
             android:label="@string/title_activity_main"
-
-            android:theme="@style/AppTheme"></activity>
+            android:theme="@style/AppTheme" />
         <activity android:name=".SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
