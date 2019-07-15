@@ -26,15 +26,17 @@ public class SplashActivity extends AppCompatActivity {
     }
 
     private void gotoStartScreen() {
-        final Intent intent = new Intent(getBaseContext(), MainActivity.class);
 
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+
 
 
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                Intent intent = new Intent(getBaseContext(), MainActivity.class);
+
+                intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 startActivity(intent);
                 finish();
 
