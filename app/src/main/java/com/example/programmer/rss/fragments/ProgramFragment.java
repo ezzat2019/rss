@@ -36,7 +36,7 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ProgramFragment extends Fragment implements BaseSliderView.OnSliderClickListener, ViewPagerEx.OnPageChangeListener {
+public class ProgramFragment extends Fragment implements BaseSliderView.OnSliderClickListener, ViewPagerEx.OnPageChangeListener, OnItemClickMain {
 
 
     // ui
@@ -118,36 +118,21 @@ public class ProgramFragment extends Fragment implements BaseSliderView.OnSlider
         recyclerViewFrag3=view.findViewById(R.id.rec_rectangle3);
         recyclerViewFrag3.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false));
         recyclerViewFrag3.setAdapter(frag3Adapter);
-        frag3Adapter.setOnItemClick(new OnItemClickMain() {
-            @Override
-            public void onClick(int pos) {
-                Toast.makeText(getContext(), pos+"", Toast.LENGTH_SHORT).show();
-            }
-        });
+
     }
 
     private void createRecycleFrag2(View view) {
         recyclerViewFrag2=view.findViewById(R.id.rec_rectangle2);
         recyclerViewFrag2.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false));
         recyclerViewFrag2.setAdapter(frag2Adapter);
-        frag2Adapter.setOnItemClick(new OnItemClickMain() {
-            @Override
-            public void onClick(int pos) {
-                Toast.makeText(getContext(), pos+"", Toast.LENGTH_SHORT).show();
-            }
-        });
+
     }
 
     private void createRecycleFrag1(View view) {
         recyclerViewFrag1=view.findViewById(R.id.rec_rectangle1);
         recyclerViewFrag1.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false));
         recyclerViewFrag1.setAdapter(frag1Adapter);
-        frag1Adapter.setOnItemClick(new OnItemClickMain() {
-            @Override
-            public void onClick(int pos) {
-                Toast.makeText(getContext(), pos+"", Toast.LENGTH_SHORT).show();
-            }
-        });
+
 
     }
 
@@ -224,7 +209,7 @@ public class ProgramFragment extends Fragment implements BaseSliderView.OnSlider
 
     @Override
     public void onSliderClick(BaseSliderView slider) {
-        Toast.makeText(getContext(), slider.getBundle().get("extra") + "", Toast.LENGTH_SHORT).show();
+        TvSeriesFragment.gotoVodeoActivity(getContext());
     }
 
 
@@ -239,5 +224,10 @@ public class ProgramFragment extends Fragment implements BaseSliderView.OnSlider
 
     @Override
     public void onPageScrollStateChanged(int state) {
+    }
+
+    @Override
+    public void onClick(int pos) {
+        Toast.makeText(getContext(), "707070", Toast.LENGTH_SHORT).show();
     }
 }

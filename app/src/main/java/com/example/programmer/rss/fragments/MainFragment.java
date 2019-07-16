@@ -22,6 +22,7 @@ import com.daimajia.slider.library.SliderTypes.BaseSliderView;
 import com.daimajia.slider.library.SliderTypes.TextSliderView;
 import com.daimajia.slider.library.Tricks.ViewPagerEx;
 import com.example.programmer.rss.R;
+import com.example.programmer.rss.ShowGridActivity;
 import com.example.programmer.rss.VideoPlayMain2Activity;
 import com.example.programmer.rss.adapters.RecycleFrag1Adapter;
 import com.example.programmer.rss.adapters.RecycleFrag2Adapter;
@@ -49,7 +50,7 @@ public class MainFragment extends Fragment implements BaseSliderView.OnSliderCli
 
     // var
     private RecycleMainAdapter adapter;
-    private List<ModelMain> modelMains, listLast, listDramaEgy, listGame;
+    private static List<ModelMain> modelMains, listLast, listDramaEgy, listGame;
     private RecycleFrag1Adapter frag1Adapter;
     private RecycleFrag2Adapter frag2Adapter;
     private RecycleFrag3Adapter frag3Adapter;
@@ -63,36 +64,29 @@ public class MainFragment extends Fragment implements BaseSliderView.OnSliderCli
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        modelMains = new ArrayList<>();
-        listLast = new ArrayList<>();
+
+
         listDramaEgy = new ArrayList<>();
-        listGame = new ArrayList<>();
-
-        listGame.add(new ModelMain(R.drawable.sor33));
-        listGame.add(new ModelMain(R.drawable.sor44));
-        listGame.add(new ModelMain(R.drawable.sor55));
-        listGame.add(new ModelMain(R.drawable.sor66));
-        listGame.add(new ModelMain(R.drawable.sor77));
-        listGame.add(new ModelMain(R.drawable.sor99));
 
 
-        listDramaEgy.add(new ModelMain(R.drawable.sor18));
-        listDramaEgy.add(new ModelMain(R.drawable.sor19));
-        listDramaEgy.add(new ModelMain(R.drawable.sor20));
-        listDramaEgy.add(new ModelMain(R.drawable.sor12));
-        listDramaEgy.add(new ModelMain(R.drawable.sor22));
-        listDramaEgy.add(new ModelMain(R.drawable.sor5));
-        listDramaEgy.add(new ModelMain(R.drawable.sor2));
+        adapter = new RecycleMainAdapter();
+        adapter.setList(getListGame());
+
+        frag1Adapter = new RecycleFrag1Adapter();
+        frag2Adapter = new RecycleFrag2Adapter();
+        frag3Adapter = new RecycleFrag3Adapter();
+        main2Adapter = new RecycleMain2Adapter();
 
 
-        listLast.add(new ModelMain(R.drawable.sor11));
-        listLast.add(new ModelMain(R.drawable.sor12));
-        listLast.add(new ModelMain(R.drawable.sor13));
-        listLast.add(new ModelMain(R.drawable.sor14));
-        listLast.add(new ModelMain(R.drawable.sor15));
-        listLast.add(new ModelMain(R.drawable.sor16));
-        listLast.add(new ModelMain(R.drawable.sor17));
+        frag1Adapter.setList(getMainModel());
+        frag2Adapter.setList(getListLast());
+        frag3Adapter.setList(getListDramaEgy());
+        main2Adapter.setList(getMainModel());
 
+    }
+
+    public static List<ModelMain> getMainModel() {
+        modelMains = new ArrayList<>();
         modelMains.add(new ModelMain(R.drawable.sor1));
         modelMains.add(new ModelMain(R.drawable.sor2));
         modelMains.add(new ModelMain(R.drawable.sor3));
@@ -102,21 +96,45 @@ public class MainFragment extends Fragment implements BaseSliderView.OnSliderCli
         modelMains.add(new ModelMain(R.drawable.sor7));
         modelMains.add(new ModelMain(R.drawable.sor8));
         modelMains.add(new ModelMain(R.drawable.sor9));
+        return modelMains;
+    }
 
-        adapter = new RecycleMainAdapter();
-        adapter.setList(listGame);
+    public static List<ModelMain> getListDramaEgy() {
+        listDramaEgy = new ArrayList<>();
 
-        frag1Adapter = new RecycleFrag1Adapter();
-        frag2Adapter = new RecycleFrag2Adapter();
-        frag3Adapter = new RecycleFrag3Adapter();
-        main2Adapter = new RecycleMain2Adapter();
+        listDramaEgy.add(new ModelMain(R.drawable.sor18));
+        listDramaEgy.add(new ModelMain(R.drawable.sor19));
+        listDramaEgy.add(new ModelMain(R.drawable.sor20));
+        listDramaEgy.add(new ModelMain(R.drawable.sor12));
+        listDramaEgy.add(new ModelMain(R.drawable.sor22));
+        listDramaEgy.add(new ModelMain(R.drawable.sor5));
+        listDramaEgy.add(new ModelMain(R.drawable.sor2));
+        return listDramaEgy;
+    }
 
+    public static List<ModelMain> getListLast() {
+        listLast = new ArrayList<>();
 
-        frag1Adapter.setList(modelMains);
-        frag2Adapter.setList(listLast);
-        frag3Adapter.setList(listDramaEgy);
-        main2Adapter.setList(modelMains);
+        listLast.add(new ModelMain(R.drawable.sor11));
+        listLast.add(new ModelMain(R.drawable.sor12));
+        listLast.add(new ModelMain(R.drawable.sor13));
+        listLast.add(new ModelMain(R.drawable.sor14));
+        listLast.add(new ModelMain(R.drawable.sor15));
+        listLast.add(new ModelMain(R.drawable.sor16));
+        listLast.add(new ModelMain(R.drawable.sor17));
+        return listLast;
+    }
 
+    public static List<ModelMain> getListGame() {
+        listGame = new ArrayList<>();
+
+        listGame.add(new ModelMain(R.drawable.sor33));
+        listGame.add(new ModelMain(R.drawable.sor44));
+        listGame.add(new ModelMain(R.drawable.sor55));
+        listGame.add(new ModelMain(R.drawable.sor66));
+        listGame.add(new ModelMain(R.drawable.sor77));
+        listGame.add(new ModelMain(R.drawable.sor99));
+        return listGame;
     }
 
     @Override
@@ -165,7 +183,7 @@ public class MainFragment extends Fragment implements BaseSliderView.OnSliderCli
         frag3Adapter.setOnItemClick(new OnItemClickMain() {
             @Override
             public void onClick(int pos) {
-                Toast.makeText(getContext(), pos + "", Toast.LENGTH_SHORT).show();
+                gotoVideoActivity("list4");
             }
         });
     }
@@ -174,12 +192,13 @@ public class MainFragment extends Fragment implements BaseSliderView.OnSliderCli
         recyclerViewFrag2 = view.findViewById(R.id.rec_rectangle2);
         recyclerViewFrag2.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
         recyclerViewFrag2.setAdapter(frag2Adapter);
-        frag2Adapter.setOnItemClick(new OnItemClickMain() {
+        frag2Adapter.setOnItemClick2(new OnItemClickMain() {
             @Override
             public void onClick(int pos) {
-                Toast.makeText(getContext(), pos + "", Toast.LENGTH_SHORT).show();
+                gotoVideoActivity("list3");
             }
         });
+
     }
 
     private void createRecycleFrag1(View view) {
@@ -189,9 +208,10 @@ public class MainFragment extends Fragment implements BaseSliderView.OnSliderCli
         frag1Adapter.setOnItemClick(new OnItemClickMain() {
             @Override
             public void onClick(int pos) {
-                Toast.makeText(getContext(), pos + "", Toast.LENGTH_SHORT).show();
+                gotoVideoActivity("list2");
             }
         });
+
 
     }
 
@@ -204,11 +224,25 @@ public class MainFragment extends Fragment implements BaseSliderView.OnSliderCli
         adapter.setOnItemClick(new OnItemClickMain() {
             @Override
             public void onClick(int pos) {
-                Toast.makeText(getContext(), pos + "", Toast.LENGTH_SHORT).show();
+                gotoVideoActivity("list1");
             }
         });
 
 
+    }
+
+    private void gotoGridActivity(String flag) {
+        Intent intent = new Intent(getContext(), ShowGridActivity.class);
+        intent.putExtra("type", flag);
+        intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        startActivity(intent);
+    }
+
+    private void gotoVideoActivity(String flag) {
+        Intent intent = new Intent(getContext(), VideoPlayMain2Activity.class);
+        intent.putExtra("type", flag);
+        intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        startActivity(intent);
     }
 
 
@@ -217,6 +251,7 @@ public class MainFragment extends Fragment implements BaseSliderView.OnSliderCli
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                gotoGridActivity("list1");
 
             }
         });
@@ -224,6 +259,8 @@ public class MainFragment extends Fragment implements BaseSliderView.OnSliderCli
         imageView11.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                gotoGridActivity("list2");
+
 
             }
         });
@@ -231,6 +268,7 @@ public class MainFragment extends Fragment implements BaseSliderView.OnSliderCli
         imageView22.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                gotoGridActivity("list3");
 
             }
         });
@@ -238,7 +276,7 @@ public class MainFragment extends Fragment implements BaseSliderView.OnSliderCli
         imageView33.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                gotoGridActivity("list4");
             }
         });
     }
@@ -288,9 +326,7 @@ public class MainFragment extends Fragment implements BaseSliderView.OnSliderCli
 
     @Override
     public void onSliderClick(BaseSliderView slider) {
-        Intent intent=new Intent(getContext(), VideoPlayMain2Activity.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-        startActivity(intent);
+        gotoVideoActivity("list0");
     }
 
 

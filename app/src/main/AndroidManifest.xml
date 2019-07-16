@@ -12,6 +12,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppStart">
+        <activity android:name=".ShowGridActivity"  android:theme="@style/AppTheme" ></activity>
         <activity
             android:name=".VideoPlayMain2Activity"
             android:parentActivityName=".MainActivity"

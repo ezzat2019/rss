@@ -1,14 +1,9 @@
 package com.example.programmer.rss.fragments;
 
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,17 +11,22 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.daimajia.slider.library.Animations.DescriptionAnimation;
 import com.daimajia.slider.library.SliderLayout;
 import com.daimajia.slider.library.SliderTypes.BaseSliderView;
 import com.daimajia.slider.library.SliderTypes.TextSliderView;
 import com.daimajia.slider.library.Tricks.ViewPagerEx;
 import com.example.programmer.rss.R;
+import com.example.programmer.rss.VideoPlayMain2Activity;
 import com.example.programmer.rss.adapters.RecycleFrag1Adapter;
 import com.example.programmer.rss.adapters.RecycleFrag2Adapter;
 import com.example.programmer.rss.adapters.RecycleFrag3Adapter;
-import com.example.programmer.rss.adapters.RecycleMain2Adapter;
-import com.example.programmer.rss.adapters.RecycleMainAdapter;
 import com.example.programmer.rss.models.ModelMain;
 import com.example.programmer.rss.ui.OnItemClickMain;
 
@@ -38,12 +38,12 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class TvSeriesFragment extends Fragment  implements BaseSliderView.OnSliderClickListener, ViewPagerEx.OnPageChangeListener {
+public class TvSeriesFragment extends Fragment implements BaseSliderView.OnSliderClickListener, ViewPagerEx.OnPageChangeListener {
 
     // ui
     private SliderLayout mDemoSlider;
-    private RecyclerView recyclerViewFrag1,recyclerViewFrag2,recyclerViewFrag3;
-    private ImageView imageView11,imageView22,imageView33;
+    private RecyclerView recyclerViewFrag1, recyclerViewFrag2, recyclerViewFrag3;
+    private ImageView imageView11, imageView22, imageView33;
 
 
     //var
@@ -73,10 +73,9 @@ public class TvSeriesFragment extends Fragment  implements BaseSliderView.OnSlid
         modelMains.add(new ModelMain(R.drawable.sor9));
 
 
-
-        frag1Adapter=new RecycleFrag1Adapter();
-        frag2Adapter=new RecycleFrag2Adapter();
-        frag3Adapter=new RecycleFrag3Adapter();
+        frag1Adapter = new RecycleFrag1Adapter();
+        frag2Adapter = new RecycleFrag2Adapter();
+        frag3Adapter = new RecycleFrag3Adapter();
 
 
         frag1Adapter.setList(modelMains);
@@ -101,7 +100,6 @@ public class TvSeriesFragment extends Fragment  implements BaseSliderView.OnSlid
         createImageListener(view);
 
 
-
         createRecycleFrag1(view);
 
         createRecycleFrag2(view);
@@ -109,52 +107,30 @@ public class TvSeriesFragment extends Fragment  implements BaseSliderView.OnSlid
         createRecycleFrag3(view);
 
 
-
-
-
     }
-
 
 
     private void createRecycleFrag3(View view) {
-        recyclerViewFrag3=view.findViewById(R.id.rec_rectangle3);
-        recyclerViewFrag3.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false));
+        recyclerViewFrag3 = view.findViewById(R.id.rec_rectangle3);
+        recyclerViewFrag3.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
         recyclerViewFrag3.setAdapter(frag3Adapter);
-        frag3Adapter.setOnItemClick(new OnItemClickMain() {
-            @Override
-            public void onClick(int pos) {
-                Toast.makeText(getContext(), pos+"", Toast.LENGTH_SHORT).show();
-            }
-        });
+
     }
 
-    private void createRecycleFrag2(View view) {
-        recyclerViewFrag2=view.findViewById(R.id.rec_rectangle2);
-        recyclerViewFrag2.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,true));
+    private void createRecycleFrag2(final View view) {
+        recyclerViewFrag2 = view.findViewById(R.id.rec_rectangle2);
+        recyclerViewFrag2.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, true));
         recyclerViewFrag2.setAdapter(frag2Adapter);
-        frag2Adapter.setOnItemClick(new OnItemClickMain() {
-            @Override
-            public void onClick(int pos) {
-                Toast.makeText(getContext(), pos+"", Toast.LENGTH_SHORT).show();
-            }
-        });
+
     }
 
     private void createRecycleFrag1(View view) {
-        recyclerViewFrag1=view.findViewById(R.id.rec_rectangle1);
-        recyclerViewFrag1.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false));
+        recyclerViewFrag1 = view.findViewById(R.id.rec_rectangle1);
+        recyclerViewFrag1.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
         recyclerViewFrag1.setAdapter(frag1Adapter);
-        frag1Adapter.setOnItemClick(new OnItemClickMain() {
-            @Override
-            public void onClick(int pos) {
-                Toast.makeText(getContext(), pos+"", Toast.LENGTH_SHORT).show();
-            }
-        });
+
 
     }
-
-
-
 
 
     private void createImageListener(View view) {
@@ -227,9 +203,18 @@ public class TvSeriesFragment extends Fragment  implements BaseSliderView.OnSlid
 
     @Override
     public void onSliderClick(BaseSliderView slider) {
-        Toast.makeText(getContext(), slider.getBundle().get("extra") + "", Toast.LENGTH_SHORT).show();
+        gotoVodeoActivity(getContext());
+
+
     }
 
+    public static void gotoVodeoActivity(Context context) {
+        Intent intent = new Intent(context, VideoPlayMain2Activity.class);
+
+        intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        context.startActivity(intent);
+
+    }
 
     @Override
     public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {

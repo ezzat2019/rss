@@ -36,11 +36,12 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class TheMoviesFragment extends Fragment implements BaseSliderView.OnSliderClickListener, ViewPagerEx.OnPageChangeListener {
+public class TheMoviesFragment extends Fragment implements BaseSliderView.OnSliderClickListener, ViewPagerEx.OnPageChangeListener, OnItemClickMain {
     // ui
     private SliderLayout mDemoSlider;
     private RecyclerView recyclerViewFrag1,recyclerViewFrag2,recyclerViewFrag3;
     private ImageView imageView11,imageView22,imageView33;
+    private View view;
 
 
     //var
@@ -92,11 +93,10 @@ public class TheMoviesFragment extends Fragment implements BaseSliderView.OnSlid
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        this.view=view;
         createSlider(view);
 
         createImageListener(view);
-
-
 
         createRecycleFrag1(view);
 
@@ -105,6 +105,7 @@ public class TheMoviesFragment extends Fragment implements BaseSliderView.OnSlid
         createRecycleFrag3(view);
 
 
+        Toast.makeText(getContext(), "create view", Toast.LENGTH_SHORT).show();
 
 
 
@@ -116,36 +117,23 @@ public class TheMoviesFragment extends Fragment implements BaseSliderView.OnSlid
         recyclerViewFrag3=view.findViewById(R.id.rec_rectangle3);
         recyclerViewFrag3.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false));
         recyclerViewFrag3.setAdapter(frag3Adapter);
-        frag3Adapter.setOnItemClick(new OnItemClickMain() {
-            @Override
-            public void onClick(int pos) {
-                Toast.makeText(getContext(), pos+"", Toast.LENGTH_SHORT).show();
-            }
-        });
+
     }
+
+
 
     private void createRecycleFrag2(View view) {
         recyclerViewFrag2=view.findViewById(R.id.rec_rectangle2);
         recyclerViewFrag2.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false));
         recyclerViewFrag2.setAdapter(frag2Adapter);
-        frag2Adapter.setOnItemClick(new OnItemClickMain() {
-            @Override
-            public void onClick(int pos) {
-                Toast.makeText(getContext(), pos+"", Toast.LENGTH_SHORT).show();
-            }
-        });
+
     }
 
     private void createRecycleFrag1(View view) {
         recyclerViewFrag1=view.findViewById(R.id.rec_rectangle1);
         recyclerViewFrag1.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false));
         recyclerViewFrag1.setAdapter(frag1Adapter);
-        frag1Adapter.setOnItemClick(new OnItemClickMain() {
-            @Override
-            public void onClick(int pos) {
-                Toast.makeText(getContext(), pos+"", Toast.LENGTH_SHORT).show();
-            }
-        });
+
 
     }
 
@@ -222,7 +210,7 @@ public class TheMoviesFragment extends Fragment implements BaseSliderView.OnSlid
 
     @Override
     public void onSliderClick(BaseSliderView slider) {
-        Toast.makeText(getContext(), slider.getBundle().get("extra") + "", Toast.LENGTH_SHORT).show();
+    TvSeriesFragment.gotoVodeoActivity(getContext());
     }
 
 
@@ -239,4 +227,8 @@ public class TheMoviesFragment extends Fragment implements BaseSliderView.OnSlid
     public void onPageScrollStateChanged(int state) {
     }
 
+    @Override
+    public void onClick(int pos) {
+        Toast.makeText(getContext(), "66666666", Toast.LENGTH_SHORT).show();
+    }
 }
