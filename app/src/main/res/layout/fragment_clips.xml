@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="?android:attr/selectableItemBackground"
+    android:layout_height="wrap_content"
+    tools:context=".fragments.ClipsFragment">
+    <RelativeLayout
+        android:layout_width="match_parent"
+
+        android:layout_height="match_parent">
+
+        <FrameLayout
+            android:id="@+id/fram3"
+            android:layout_width="match_parent"
+            android:layout_height="210dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="fitXY"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:src="@drawable/mhand"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="clips"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginTop="22dp"
+                    android:textColor="#ffff"
+                    android:textSize="18dp"
+                    android:textStyle="bold"
+
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="crash"
+                    android:layout_marginRight="12dp"
+                    android:layout_marginTop="150dp"
+                    android:textColor="#ffff"
+                    android:layout_alignParentRight="true"
+                    android:textSize="18dp"
+
+
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="descreption"
+                    android:layout_marginRight="12dp"
+                    android:layout_marginTop="155dp"
+                    android:textColor="@color/gray_50"
+                    android:layout_alignParentRight="true"
+                    android:textSize="16dp"
+
+
+                    />
+
+
+
+            </RelativeLayout>
+        </FrameLayout>
+
+
+    </RelativeLayout>
+
+
+
+</FrameLayout>

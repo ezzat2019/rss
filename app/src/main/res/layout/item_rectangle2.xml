@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+
+
+    >
+    <ImageView
+        android:id="@+id/image_list22"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+
+        android:layout_marginStart="15dp"
+
+
+        android:background="@drawable/ic_view_list_main" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rec_rectangle2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:paddingLeft="3dp"
+
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="27dp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Enjoy the summer free of charge"
+        android:textColor="#ffff"
+        android:textStyle="bold"
+        android:id="@+id/txt1"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="10dp"
+
+        />
+
+</RelativeLayout>
