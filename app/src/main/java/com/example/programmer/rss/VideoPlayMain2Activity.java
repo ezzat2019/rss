@@ -118,7 +118,7 @@ public class VideoPlayMain2Activity extends AppCompatActivity implements Player.
         super.onResume();
         type = getIntent().getStringExtra("type");
 
-        
+
         if (!toggleScreen)
         {
             createViewPageAndTabLayaout();
