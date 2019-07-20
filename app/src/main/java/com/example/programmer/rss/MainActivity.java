@@ -9,7 +9,6 @@ import android.os.Handler;
 import android.util.Base64;
 import android.util.Log;
 import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.Toast;
@@ -21,7 +20,6 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
-import androidx.viewpager.widget.ViewPager;
 
 import com.example.programmer.rss.adapters.ViewPagerAdapter;
 import com.example.programmer.rss.custom_classes.CustomViewPager;
@@ -58,7 +56,6 @@ public class MainActivity extends AppCompatActivity
     private FirebaseAuth mAuth;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -86,6 +83,7 @@ public class MainActivity extends AppCompatActivity
     private void inatilizeAuth() {
         mAuth = FirebaseAuth.getInstance();
     }
+
     @Override
     public void onStart() {
         super.onStart();
@@ -93,6 +91,7 @@ public class MainActivity extends AppCompatActivity
         FirebaseUser currentUser = mAuth.getCurrentUser();
         //updateUI(currentUser);
     }
+
     private void printKeyHash() {
         // Add code to print out the key hash
         try {
@@ -119,14 +118,13 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void createViewPageAndTabLayOut() {
-        viewPager = (CustomViewPager)findViewById(R.id.view_pager);
+        viewPager = (CustomViewPager) findViewById(R.id.view_pager);
         viewPager.setPagingEnabled(false);
 
         tabLayout = findViewById(R.id.tab);
         viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager(), fragmentList);
         viewPager.setAdapter(viewPagerAdapter);
         tabLayout.setupWithViewPager(viewPager);
-
 
 
     }
@@ -207,9 +205,11 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_login) {
-            // Handle the camera action
+            Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            startActivity(intent);
         } else if (id == R.id.nav_create_an_account) {
-            Intent intent=new Intent(getApplicationContext(),SignUpActivity.class);
+            Intent intent = new Intent(getApplicationContext(), SignUpActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
             startActivity(intent);
 

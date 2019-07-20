@@ -1,6 +1,7 @@
 package com.example.programmer.rss;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
@@ -12,8 +13,8 @@ import android.view.WindowManager;
 import android.widget.ImageButton;
 import android.widget.Switch;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
@@ -76,6 +77,7 @@ public class VideoPlayMain2Activity extends AppCompatActivity implements Player.
     private static List<Fragment> list;
     private static String type;
     private SharedPreferences sharedPreferences;
+    private static boolean isLogin = false;
 
 
     @Override
@@ -92,8 +94,7 @@ public class VideoPlayMain2Activity extends AppCompatActivity implements Player.
         videoFullScreenPlayer = findViewById(R.id.videoFullScreenPlayer);
         videoUri = VideoPlayerConfig.DEFAULT_VIDEO_URL;
 
-        sharedPreferences=getSharedPreferences("full",MODE_PRIVATE);
-
+        sharedPreferences = getSharedPreferences("full", MODE_PRIVATE);
 
 
         if (!toggleScreen) {
@@ -108,7 +109,7 @@ public class VideoPlayMain2Activity extends AppCompatActivity implements Player.
 
         setUp();
 
-
+        sharedPreferences = LoginActivity.createSharedPerfernce(getApplicationContext());
 
 
     }
@@ -119,14 +120,12 @@ public class VideoPlayMain2Activity extends AppCompatActivity implements Player.
         type = getIntent().getStringExtra("type");
 
 
-        if (!toggleScreen)
-        {
+        if (!toggleScreen) {
             createViewPageAndTabLayaout();
 
         }
 
     }
-
 
 
     private void createViewPageAndTabLayaout() {
@@ -169,6 +168,45 @@ public class VideoPlayMain2Activity extends AppCompatActivity implements Player.
         btn_add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                isLogin = sharedPreferences.getBoolean("is_login", false);
+                if (!isLogin) {
+                    Intent intent = new Intent(getApplicationContext(), PreferActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                    startActivity(intent);
+                } else {
+                    AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(VideoPlayMain2Activity.this);
+
+                    // set title
+                    alertDialogBuilder.setTitle("Attention !");
+
+                    // set dialog message
+                    alertDialogBuilder
+                            .setMessage("you should login with your accont if you want to create neew account click ok")
+                            .setCancelable(false)
+                            .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    Intent intent = new Intent(getApplicationContext(), SignUpActivity.class);
+                                    intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                                    startActivity(intent);
+
+                                }
+                            })
+                            .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    // if this button is clicked, just close
+                                    // the dialog box and do nothing
+                                    dialog.cancel();
+                                }
+                            });
+
+                    // create alert dialog
+                    AlertDialog alertDialog = alertDialogBuilder.create();
+
+                    // show it
+                    alertDialog.show();
+                }
+
 
             }
         });
@@ -353,11 +391,9 @@ public class VideoPlayMain2Activity extends AppCompatActivity implements Player.
 
 
     public void full(View view) {
-        SharedPreferences.Editor editor=sharedPreferences.edit();
-        editor.putString("type",type);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("type", type);
         editor.commit();
-
-
 
 
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
