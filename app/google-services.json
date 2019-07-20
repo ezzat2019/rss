@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "192847348379",
+    "firebase_url": "https://rssfirebaseproject-da8a6.firebaseio.com",
+    "project_id": "rssfirebaseproject-da8a6",
+    "storage_bucket": "rssfirebaseproject-da8a6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:192847348379:android:4ffd3c00773848cc",
+        "android_client_info": {
+          "package_name": "com.example.programmer.rss"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "192847348379-3bj41qar1i7r45bqhs149p13lkt38ig7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.programmer.rss",
+            "certificate_hash": "ce09f160a3862ba7e376cfa607b5dfe6b3cc3e76"
+          }
+        },
+        {
+          "client_id": "192847348379-5sjl5a5r4kchrvb3bd393i34mlafp6hl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDg2ksR5yo6uxogRJa4sZ-VjQxbS_lvycQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "192847348379-5sjl5a5r4kchrvb3bd393i34mlafp6hl.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
