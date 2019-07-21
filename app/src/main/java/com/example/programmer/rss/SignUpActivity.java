@@ -1,6 +1,7 @@
 package com.example.programmer.rss;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.Patterns;
@@ -49,9 +50,9 @@ public class SignUpActivity extends AppCompatActivity {
     // var
     private String email, password;
     private static Boolean isEmail = false, isPass = false, ischeck1 = false, isCheck2 = false;
-
     private CallbackManager callbackManager;
     private FirebaseAuth mAuth;
+    private SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,6 +72,8 @@ public class SignUpActivity extends AppCompatActivity {
 
 
         createButtonFace();
+
+        sharedPreferences=LoginActivity.createSharedPerfernce(getApplicationContext());
 
 
     }
@@ -95,6 +98,7 @@ public class SignUpActivity extends AppCompatActivity {
             @Override
             public void onSuccess(LoginResult loginResult) {
                 // Retrieving access token using the LoginResult
+
                 AccessToken accessToken = loginResult.getAccessToken();
                 handleFacebookAccessToken(accessToken);
 
@@ -138,13 +142,20 @@ public class SignUpActivity extends AppCompatActivity {
                             String id = object.getString("id");
                             String image_url = "https://graph.facebook.com/" + id + "/picture?type=normal";
 
+                            SharedPreferences.Editor editor = sharedPreferences.edit();
+
+                            editor.putBoolean("is_login", true);
+                            editor.putString("name",first_name+" "+last_name);
+                            editor.putString("img_url",image_url);
+                            editor.putString("email",email);
+                            editor.commit();
                             Log.d("qqqq", first_name + " " + email + " " + id + " " + image_url);
 
                             mAuth.createUserWithEmailAndPassword(email, id).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                                 @Override
                                 public void onComplete(@NonNull Task<AuthResult> task) {
-                                    Toast.makeText(SignUpActivity.this, "added", Toast.LENGTH_SHORT).show();
 
+                                    onBackPressed();
                                 }
                             });
 

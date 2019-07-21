@@ -23,6 +23,9 @@ import com.example.programmer.rss.custom_classes.CustomViewPager;
 import com.example.programmer.rss.custom_classes.VideoPlayerConfig;
 import com.example.programmer.rss.fragments.ClipsFragment;
 import com.example.programmer.rss.fragments.EpisodesFragment;
+import com.example.programmer.rss.models.ItemRoom;
+import com.example.programmer.rss.models.ModelMain;
+import com.example.programmer.rss.repositry.RepositryPrefer;
 import com.google.android.exoplayer2.DefaultLoadControl;
 import com.google.android.exoplayer2.DefaultRenderersFactory;
 import com.google.android.exoplayer2.ExoPlaybackException;
@@ -78,6 +81,8 @@ public class VideoPlayMain2Activity extends AppCompatActivity implements Player.
     private static String type;
     private SharedPreferences sharedPreferences;
     private static boolean isLogin = false;
+    private RepositryPrefer prefer;
+    private List<ModelMain>mains;
 
 
     @Override
@@ -95,6 +100,8 @@ public class VideoPlayMain2Activity extends AppCompatActivity implements Player.
         videoUri = VideoPlayerConfig.DEFAULT_VIDEO_URL;
 
         sharedPreferences = getSharedPreferences("full", MODE_PRIVATE);
+        prefer=RepositryPrefer.getInstance(getApplicationContext());
+        mains=new ArrayList<>();
 
 
         if (!toggleScreen) {
@@ -170,8 +177,11 @@ public class VideoPlayMain2Activity extends AppCompatActivity implements Player.
             public void onClick(View view) {
 
                 isLogin = sharedPreferences.getBoolean("is_login", false);
-                if (!isLogin) {
+                if (isLogin) {
                     Intent intent = new Intent(getApplicationContext(), PreferActivity.class);
+
+                    prefer.insert(new ItemRoom(sharedPreferences.getInt("prefer",0)));
+
                     intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                     startActivity(intent);
                 } else {

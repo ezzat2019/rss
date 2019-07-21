@@ -1,6 +1,7 @@
 package com.example.programmer.rss;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.Signature;
@@ -54,6 +55,8 @@ public class MainActivity extends AppCompatActivity
     private ViewPagerAdapter viewPagerAdapter;
     private List<Fragment> fragmentList;
     private FirebaseAuth mAuth;
+    private SharedPreferences sharedPreferences;
+    private static Boolean isLogin = false;
 
 
     @Override
@@ -76,6 +79,8 @@ public class MainActivity extends AppCompatActivity
         createViewPageAndTabLayOut();
 
         printKeyHash();
+
+        sharedPreferences = LoginActivity.createSharedPerfernce(getApplicationContext());
 
 
     }
@@ -201,17 +206,39 @@ public class MainActivity extends AppCompatActivity
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
+        isLogin = sharedPreferences.getBoolean("is_login", false);
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
         if (id == R.id.nav_login) {
-            Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-            startActivity(intent);
+
+            if (isLogin) {
+                Intent intent = new Intent(getApplicationContext(), ProfileActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                startActivity(intent);
+
+            } else {
+                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                startActivity(intent);
+
+            }
+
         } else if (id == R.id.nav_create_an_account) {
-            Intent intent = new Intent(getApplicationContext(), SignUpActivity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-            startActivity(intent);
+            if (isLogin)
+            {
+                Intent intent = new Intent(getApplicationContext(), ProfileActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                startActivity(intent);
+
+            }
+            else
+            {
+                Intent intent = new Intent(getApplicationContext(), SignUpActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                startActivity(intent);
+            }
+
 
         } else if (id == R.id.nav_sharks_and_judgments) {
 

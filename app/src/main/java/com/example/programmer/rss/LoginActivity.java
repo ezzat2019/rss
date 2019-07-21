@@ -97,8 +97,8 @@ public class LoginActivity extends AppCompatActivity {
             public void onSuccess(LoginResult loginResult) {
 
                 SharedPreferences.Editor editor = sharedPreferences.edit();
-                isLogin = true;
-                editor.putBoolean("is_login", isLogin);
+
+                editor.putBoolean("is_login", true);
                 editor.commit();
                 // Retrieving access token using the LoginResult
                 AccessToken accessToken = loginResult.getAccessToken();
@@ -143,14 +143,20 @@ public class LoginActivity extends AppCompatActivity {
                             String email = object.getString("email");
                             String id = object.getString("id");
                             String image_url = "https://graph.facebook.com/" + id + "/picture?type=normal";
+                            SharedPreferences.Editor editor = sharedPreferences.edit();
+
+                            editor.putBoolean("is_login", true);
+                            editor.putString("name",first_name+" "+last_name);
+                            editor.putString("img_url",image_url);
+                            editor.putString("email",email);
+                            editor.commit();
 
                             Log.d("qqqq", first_name + " " + email + " " + id + " " + image_url);
 
                             mAuth.createUserWithEmailAndPassword(email, id).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                                 @Override
                                 public void onComplete(@NonNull Task<AuthResult> task) {
-                                    Toast.makeText(getApplicationContext(), "added", Toast.LENGTH_SHORT).show();
-
+                                    onBackPressed();
                                 }
                             });
 
@@ -228,13 +234,20 @@ public class LoginActivity extends AppCompatActivity {
                     SharedPreferences.Editor editor = sharedPreferences.edit();
                     isLogin = true;
                     editor.putBoolean("is_login", isLogin);
+                    String[] n=email.split("@");
+                    editor.putString("name",n[0]);
+                    editor.putString("email",email);
+                    editor.putString("img_url","");
                     editor.commit();
                     mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful())
-                                Toast.makeText(LoginActivity.this, "Login success", Toast.LENGTH_SHORT).show();
-                            else
+                            {
+                                Toast.makeText(LoginActivity.this, "success", Toast.LENGTH_SHORT).show();
+                                onBackPressed();
+                            }
+                                else
                                 Toast.makeText(getApplicationContext(), "in correct email or password" +
                                         "" +
                                         "or check internet connection ", Toast.LENGTH_SHORT).show();

@@ -61,4 +61,26 @@ dependencies {
 
     implementation 'com.facebook.android:facebook-android-sdk:[5,6)'
 
+    def rxbinding_version = "3.0.0-alpha2"
+// Rx Binding Library
+    implementation "com.jakewharton.rxbinding3:rxbinding:$rxbinding_version"
+
+
+//Convert Observable to LiveData
+//This will allow us to convert Observables (or Flowables) into LiveData objects.
+    implementation "android.arch.lifecycle:reactivestreams:1.1.1"
+
+
+//  Rx observable
+// RxJava Call Adapter
+    implementation "com.squareup.retrofit2:adapter-rxjava2:2.5.0"
+
+
+    //ViewModel and LiveData
+
+    implementation "android.arch.lifecycle:extensions:$lifecycle_version"
+// Room
+    def room_version = "1.1.1-rc1"
+    implementation "android.arch.persistence.room:runtime:$room_version"
+    annotationProcessor "android.arch.persistence.room:compiler:$room_version"
 }

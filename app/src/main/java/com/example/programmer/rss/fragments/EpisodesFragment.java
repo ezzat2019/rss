@@ -16,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.example.programmer.rss.LoginActivity;
 import com.example.programmer.rss.R;
 import com.example.programmer.rss.adapters.RecycleChannelAdapter;
 import com.example.programmer.rss.adapters.RecycleVideoAdapter;
@@ -37,8 +38,10 @@ public class EpisodesFragment extends Fragment {
 
     // var
     private RecycleVideoAdapter videoAdapter;
-    private List<ModelVideoEp> modelMains;
+    private List<ModelMain> modelMains;
     private String type;
+    private SharedPreferences sharedPreferences;
+
 
 
     public EpisodesFragment() {
@@ -49,30 +52,35 @@ public class EpisodesFragment extends Fragment {
         // Required empty public constructor
         this.type=t;
 
+
+
     }
     private void getIntents() {
 
         if (type != null) {
             if (type.equals("list0")) {
                 videoAdapter.setList(MainFragment.getMainModel());
+                modelMains=MainFragment.getMainModel();
 
 
 
             } else if (type.equals("list1")) {
                 videoAdapter.setList(MainFragment.getListGame());
-
+                modelMains=MainFragment.getListGame();
 
 
             } else if (type.equals("list2")) {
                 videoAdapter.setList(MainFragment.getMainModel());
+                modelMains=MainFragment.getMainModel();
 
             } else if (type.equals("list3")) {
                 videoAdapter.setList(MainFragment.getListLast());
+                modelMains=MainFragment.getListLast();
 
 
             } else if (type.equals("list4")) {
                 videoAdapter.setList(MainFragment.getListDramaEgy());
-
+                modelMains=MainFragment.getListDramaEgy();
 
             }
 
@@ -106,6 +114,7 @@ public class EpisodesFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        sharedPreferences= LoginActivity.createSharedPerfernce(view.getContext());
 
         createRecycleVideo(view);
         getIntents();
@@ -123,7 +132,11 @@ public class EpisodesFragment extends Fragment {
         videoAdapter.setOnItemClick(new OnItemClickMain() {
             @Override
             public void onClick(int pos) {
-                Toast.makeText(getContext(), pos+"", Toast.LENGTH_SHORT).show();
+
+                sharedPreferences.edit().putInt("prefer",modelMains.get(pos).getSource()).commit();
+                Toast.makeText(getActivity(), pos+"", Toast.LENGTH_SHORT).show();
+
+
 
             }
         });
