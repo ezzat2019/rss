@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="?android:attr/selectableItemBackground"
     tools:context=".fragments.MainFragment">
 
@@ -11,107 +11,108 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="?android:attr/selectableItemBackground"
-      >
+        android:background="?android:attr/selectableItemBackground">
 
-      <RelativeLayout
-          android:layout_width="match_parent"
-          android:background="?android:attr/selectableItemBackground"
-          android:layout_height="match_parent">
-          <com.daimajia.slider.library.SliderLayout
-              android:id="@+id/slider2"
-              android:layout_width="match_parent"
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="?android:attr/selectableItemBackground">
 
-              android:layout_height="215dp" />
+            <com.daimajia.slider.library.SliderLayout
+                android:id="@+id/slider2"
+                android:layout_width="match_parent"
 
-          <com.daimajia.slider.library.Indicators.PagerIndicator
-              android:id="@+id/custom_indicator"
-              android:background="@color/colorAccent"
-              android:layout_width="wrap_content"
-              app:selected_color="@color/colorAccent"
+                android:layout_height="215dp" />
 
-              android:layout_height="wrap_content"
-              android:gravity="center" />
-          <ImageView
-              android:id="@+id/image_list"
-              android:layout_width="30dp"
-              android:layout_height="30dp"
-              android:layout_alignParentStart="true"
-              android:layout_alignParentTop="true"
-              android:layout_marginStart="15dp"
+            <com.daimajia.slider.library.Indicators.PagerIndicator
+                android:id="@+id/custom_indicator"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/colorAccent"
 
-              android:layout_marginTop="249dp"
-              android:background="@drawable/ic_view_list_main" />
+                android:gravity="center"
+                app:selected_color="@color/colorAccent" />
 
-          <androidx.recyclerview.widget.RecyclerView
-              android:id="@+id/rec_main"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:background="?android:attr/selectableItemBackground"
-              android:layout_alignParentStart="true"
-              android:layout_alignParentTop="true"
-              android:layout_marginStart="5dp"
-              android:layout_marginTop="273dp"
-              android:paddingLeft="3dp" />
+            <ImageView
+                android:id="@+id/image_list"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="15dp"
 
-          <FrameLayout
-              android:layout_width="match_parent"
-              android:layout_height="200dp"
-              android:id="@+id/frag1"
-              android:layout_below="@+id/rec_main"
+                android:layout_marginTop="249dp"
+                android:background="@drawable/ic_view_list_main" />
 
-              android:layout_marginStart="-2dp"
-              android:layout_marginTop="48dp"
-            >
-              <include layout="@layout/item_rectangle1"/>
-          </FrameLayout>
-          <FrameLayout
-              android:layout_width="match_parent"
-              android:layout_height="200dp"
-              android:layout_below="@+id/frag1"
-              android:id="@+id/frag2"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rec_main"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="273dp"
+                android:background="?android:attr/selectableItemBackground"
+                android:paddingLeft="3dp" />
 
-              android:layout_marginStart="-2dp"
-              android:layout_marginTop="6dp"
-             >
-              <include layout="@layout/item_rectangle2"/>
-          </FrameLayout>
-          <FrameLayout
-              android:layout_width="match_parent"
-              android:layout_height="200dp"
-              android:layout_below="@+id/frag2"
-              android:id="@+id/frag3"
+            <FrameLayout
+                android:id="@+id/frag1"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_below="@+id/rec_main"
 
-              android:layout_marginStart="-2dp"
-              android:layout_marginTop="6dp"
-              >
-              <include layout="@layout/item_rectangle3"/>
-          </FrameLayout>
+                android:layout_marginStart="-2dp"
+                android:layout_marginTop="48dp">
 
-          <FrameLayout
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:layout_below="@+id/frag3"
-              android:id="@+id/frag4"
+                <include layout="@layout/item_rectangle1" />
+            </FrameLayout>
 
-              android:layout_marginStart="-2dp"
-              android:layout_marginTop="6dp"
-              >
-              <androidx.recyclerview.widget.RecyclerView
-                  android:id="@+id/rec_game"
-                  android:background="?android:attr/selectableItemBackground"
-                  android:layout_width="match_parent"
-                  android:layout_height="wrap_content"
+            <FrameLayout
+                android:id="@+id/frag2"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_below="@+id/frag1"
+
+                android:layout_marginStart="-2dp"
+                android:layout_marginTop="6dp">
+
+                <include layout="@layout/item_rectangle2" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/frag3"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_below="@+id/frag2"
+
+                android:layout_marginStart="-2dp"
+                android:layout_marginTop="6dp">
+
+                <include layout="@layout/item_rectangle3" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/frag4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/frag3"
+
+                android:layout_marginStart="-2dp"
+                android:layout_marginTop="6dp">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rec_game"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="?android:attr/selectableItemBackground"
 
 
-                  android:paddingLeft="3dp" />
-          </FrameLayout>
+                    android:paddingLeft="3dp" />
+            </FrameLayout>
 
 
-      </RelativeLayout>
+        </RelativeLayout>
     </ScrollView>
-
-
 
 
 </RelativeLayout>

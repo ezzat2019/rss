@@ -13,6 +13,13 @@ public class ModelVideoEp {
         this.img = img;
     }
 
+    public ModelVideoEp(String url, String name, String descerption, int img) {
+        this.url = url;
+        this.name = name;
+        this.descerption = descerption;
+        this.img = img;
+    }
+
     public String getUrl() {
         return url;
     }
@@ -42,13 +49,6 @@ public class ModelVideoEp {
     }
 
     public void setImg(int img) {
-        this.img = img;
-    }
-
-    public ModelVideoEp(String url, String name, String descerption, int img) {
-        this.url = url;
-        this.name = name;
-        this.descerption = descerption;
         this.img = img;
     }
 

@@ -1,18 +1,11 @@
 package com.example.programmer.rss.models;
 
-public class ModelMain  {
+public class ModelMain {
     private String uri;
-    private int  source;
+    private int source;
+    private String name;
 
     public ModelMain(int source) {
-        this.source = source;
-    }
-
-    public int getSource() {
-        return source;
-    }
-
-    public void setSource(int source) {
         this.source = source;
     }
 
@@ -25,7 +18,16 @@ public class ModelMain  {
         this.uri = uri;
     }
 
-    private String name;
+    public ModelMain() {
+    }
+
+    public int getSource() {
+        return source;
+    }
+
+    public void setSource(int source) {
+        this.source = source;
+    }
 
     public String getUri() {
         return uri;
@@ -41,8 +43,5 @@ public class ModelMain  {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public ModelMain() {
     }
 }

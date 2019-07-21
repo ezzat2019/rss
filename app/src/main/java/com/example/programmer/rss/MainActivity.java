@@ -42,22 +42,19 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    private static Boolean isLogin = false;
     // ui
     private SearchView searchView;
     private ImageButton imageButton;
     private Toolbar toolbar;
     private CustomViewPager viewPager;
     private TabLayout tabLayout;
-
-
     // var
     private Boolean is_back = false;
     private ViewPagerAdapter viewPagerAdapter;
     private List<Fragment> fragmentList;
     private FirebaseAuth mAuth;
     private SharedPreferences sharedPreferences;
-    private static Boolean isLogin = false;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -225,15 +222,12 @@ public class MainActivity extends AppCompatActivity
             }
 
         } else if (id == R.id.nav_create_an_account) {
-            if (isLogin)
-            {
+            if (isLogin) {
                 Intent intent = new Intent(getApplicationContext(), ProfileActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 startActivity(intent);
 
-            }
-            else
-            {
+            } else {
                 Intent intent = new Intent(getApplicationContext(), SignUpActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 startActivity(intent);

@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout  xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginTop="20dp"
+
+
     android:background="@color/colorPrimary"
-
-
-
-  android:layout_marginTop="20dp"
 
 
     android:theme="@style/ThemeOverlay.AppCompat.Dark">
@@ -16,21 +14,19 @@
         android:id="@+id/imageView"
         android:layout_width="38dp"
         android:layout_height="38dp"
-        android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
-      android:background="@drawable/icon_sahed" />
+        android:layout_centerVertical="true"
+        android:background="@drawable/icon_sahed" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="SHAHED"
-        android:textStyle="bold"
         android:layout_below="@+id/image_button"
-        android:textColor="#ffff"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="50dp"
-        />
-
+        android:text="SHAHED"
+        android:textColor="#ffff"
+        android:textStyle="bold" />
 
 
 </RelativeLayout>

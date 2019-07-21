@@ -5,10 +5,9 @@
     android:layout_height="match_parent"
     tools:context=".fragments.ChannelsFragment">
 
-  <androidx.recyclerview.widget.RecyclerView
-      android:layout_width="match_parent"
-      android:layout_height="match_parent"
-      android:id="@+id/rec_channel"
-      />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rec_channel"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
 </FrameLayout>

@@ -13,7 +13,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.programmer.rss.R;
 import com.example.programmer.rss.models.ModelMain;
-import com.example.programmer.rss.models.ModelVideoEp;
 import com.example.programmer.rss.ui.OnItemClickMain;
 
 import java.util.List;
@@ -55,7 +54,7 @@ public class RecycleVideoAdapter extends RecyclerView.Adapter<RecycleVideoAdapte
 
     @Override
     public int getItemCount() {
-        if (list==null)
+        if (list == null)
             return 0;
         return list.size();
     }

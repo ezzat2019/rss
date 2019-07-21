@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     android:layout_width="wrap_content"
-
-    android:background="@color/colorPrimary"
-    android:layout_marginRight="6dp"
     android:layout_height="wrap_content"
 
+    android:layout_marginRight="6dp"
+    android:background="@color/colorPrimary"
+    android:orientation="vertical"
+
     app:cardCornerRadius="20dp">
-    <de.hdodenhof.circleimageview.CircleImageView
-        xmlns:app="http://schemas.android.com/apk/res-auto"
+
+    <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/main_image"
         android:layout_width="130dp"
         android:layout_height="145dp"
 
-        android:src="@drawable/icon_sahed"
         android:background="#2E2E2E"
-        app:civ_border_width="2dp"
+        android:src="@drawable/icon_sahed"
+        app:civ_border_color="#FF000000"
 
-        app:civ_border_color="#FF000000"/>
+        app:civ_border_width="2dp" />
 
 </androidx.cardview.widget.CardView>

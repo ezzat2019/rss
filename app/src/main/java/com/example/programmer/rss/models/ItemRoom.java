@@ -2,12 +2,12 @@ package com.example.programmer.rss.models;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
-import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 @Entity(tableName = "item_prefer")
 public class ItemRoom {
-    @PrimaryKey(autoGenerate = true)
+    @PrimaryKey
+    @ColumnInfo(name = "source")
     private int source;
 
     public ItemRoom(int source) {

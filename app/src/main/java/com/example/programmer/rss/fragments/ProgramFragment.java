@@ -2,19 +2,18 @@ package com.example.programmer.rss.fragments;
 
 
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.daimajia.slider.library.Animations.DescriptionAnimation;
 import com.daimajia.slider.library.SliderLayout;
@@ -41,8 +40,8 @@ public class ProgramFragment extends Fragment implements BaseSliderView.OnSlider
 
     // ui
     private SliderLayout mDemoSlider;
-    private RecyclerView recyclerViewFrag1,recyclerViewFrag2,recyclerViewFrag3;
-    private ImageView imageView11,imageView22,imageView33;
+    private RecyclerView recyclerViewFrag1, recyclerViewFrag2, recyclerViewFrag3;
+    private ImageView imageView11, imageView22, imageView33;
 
 
     //var
@@ -52,10 +51,10 @@ public class ProgramFragment extends Fragment implements BaseSliderView.OnSlider
     private RecycleFrag3Adapter frag3Adapter;
 
 
-
     public ProgramFragment() {
         // Required empty public constructor
     }
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,9 +72,9 @@ public class ProgramFragment extends Fragment implements BaseSliderView.OnSlider
         modelMains.add(new ModelMain("https://via.placeholder.com/600/ea51da"));
 
 
-        frag1Adapter=new RecycleFrag1Adapter();
-        frag2Adapter=new RecycleFrag2Adapter();
-        frag3Adapter=new RecycleFrag3Adapter();
+        frag1Adapter = new RecycleFrag1Adapter();
+        frag2Adapter = new RecycleFrag2Adapter();
+        frag3Adapter = new RecycleFrag3Adapter();
 
 
         frag1Adapter.setList(modelMains);
@@ -91,13 +90,13 @@ public class ProgramFragment extends Fragment implements BaseSliderView.OnSlider
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_program, container, false);
     }
+
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         createSlider(view);
 
         createImageListener(view);
-
 
 
         createRecycleFrag1(view);
@@ -107,37 +106,30 @@ public class ProgramFragment extends Fragment implements BaseSliderView.OnSlider
         createRecycleFrag3(view);
 
 
-
-
-
     }
 
 
-
     private void createRecycleFrag3(View view) {
-        recyclerViewFrag3=view.findViewById(R.id.rec_rectangle3);
-        recyclerViewFrag3.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false));
+        recyclerViewFrag3 = view.findViewById(R.id.rec_rectangle3);
+        recyclerViewFrag3.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
         recyclerViewFrag3.setAdapter(frag3Adapter);
 
     }
 
     private void createRecycleFrag2(View view) {
-        recyclerViewFrag2=view.findViewById(R.id.rec_rectangle2);
-        recyclerViewFrag2.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false));
+        recyclerViewFrag2 = view.findViewById(R.id.rec_rectangle2);
+        recyclerViewFrag2.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
         recyclerViewFrag2.setAdapter(frag2Adapter);
 
     }
 
     private void createRecycleFrag1(View view) {
-        recyclerViewFrag1=view.findViewById(R.id.rec_rectangle1);
-        recyclerViewFrag1.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false));
+        recyclerViewFrag1 = view.findViewById(R.id.rec_rectangle1);
+        recyclerViewFrag1.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
         recyclerViewFrag1.setAdapter(frag1Adapter);
 
 
     }
-
-
-
 
 
     private void createImageListener(View view) {

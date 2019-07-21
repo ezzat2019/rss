@@ -12,15 +12,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.programmer.rss.R;
-import com.example.programmer.rss.models.ItemRoom;
-import com.example.programmer.rss.models.ModelMain;
+import com.example.programmer.rss.models.ItemEmail;
 import com.example.programmer.rss.ui.OnItemClickMain;
 
 import java.util.List;
 
 public class RecyclePreferdAdapter extends RecyclerView.Adapter<RecyclePreferdAdapter.VH> {
     protected static OnItemClickMain main;
-    private List<ItemRoom> list;
+    private List<ItemEmail> list;
 
     @NonNull
     @Override
@@ -40,23 +39,23 @@ public class RecyclePreferdAdapter extends RecyclerView.Adapter<RecyclePreferdAd
 
     }
 
-    public List<ItemRoom> getList() {
+    public List<ItemEmail> getList() {
         return list;
     }
 
-    public void setList(List<ItemRoom> list) {
+    public void setList(List<ItemEmail> list) {
         this.list = list;
 
     }
 
-    public void addItem(ItemRoom modelMain) {
+    public void addItem(ItemEmail modelMain) {
         list.add(modelMain);
         notifyDataSetChanged();
     }
 
     @Override
     public int getItemCount() {
-        if (list==null)
+        if (list == null)
             return 0;
         return list.size();
     }
@@ -82,8 +81,8 @@ public class RecyclePreferdAdapter extends RecyclerView.Adapter<RecyclePreferdAd
             });
         }
 
-        void bind(ItemRoom modelMain) {
-            Glide.with(context.getApplicationContext()).load(modelMain.getSource())
+        void bind(ItemEmail modelMain) {
+            Glide.with(context.getApplicationContext()).load(modelMain.getUrl())
                     .into(imageView);
 
 

@@ -16,14 +16,13 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class ProfileActivity extends AppCompatActivity {
 
+    private static Boolean isLogin = true;
     // ui
     private TextView txt_name, txt_email;
     private CircleImageView imageView;
-
     // var
     private SharedPreferences sharedPreferences;
     private FirebaseAuth mAuth;
-    private static Boolean isLogin = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,12 +43,10 @@ public class ProfileActivity extends AppCompatActivity {
     private void createImage() {
 
         imageView = findViewById(R.id.img_profile);
-        String url=sharedPreferences.getString("img_url", "");
-        if (!url.equals(""))
-        {
+        String url = sharedPreferences.getString("img_url", "");
+        if (!url.equals("")) {
             Glide.with(getApplicationContext()).load(url).into(imageView);
-        }
-        else {
+        } else {
             Glide.with(getApplicationContext()).load(R.drawable.profile).into(imageView);
 
         }

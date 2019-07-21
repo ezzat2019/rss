@@ -16,16 +16,16 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
-            app:popupTheme="@style/AppStart.PopupOverlay" >
+            app:popupTheme="@style/AppStart.PopupOverlay">
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
                 <ImageButton
+                    android:id="@+id/image_button"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
-                    android:id="@+id/image_button"
 
 
                     android:layout_alignTop="@+id/search"
@@ -36,13 +36,12 @@
                     android:scaleType="centerInside" />
 
                 <androidx.appcompat.widget.SearchView
+                    android:id="@+id/search"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/search"
                     android:layout_alignParentRight="true"
 
-                    android:layout_centerVertical="true"
-                    ></androidx.appcompat.widget.SearchView>
+                    android:layout_centerVertical="true"></androidx.appcompat.widget.SearchView>
 
             </RelativeLayout>
         </androidx.appcompat.widget.Toolbar>

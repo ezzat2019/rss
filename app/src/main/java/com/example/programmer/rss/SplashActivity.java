@@ -28,9 +28,6 @@ public class SplashActivity extends AppCompatActivity {
     private void gotoStartScreen() {
 
 
-
-
-
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {

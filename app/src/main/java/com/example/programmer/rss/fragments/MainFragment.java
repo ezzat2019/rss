@@ -42,15 +42,13 @@ import java.util.List;
  */
 public class MainFragment extends Fragment implements BaseSliderView.OnSliderClickListener, ViewPagerEx.OnPageChangeListener {
 
+    private static List<ModelMain> modelMains, listLast, listDramaEgy, listGame;
     // ui
     private SliderLayout mDemoSlider;
     private RecyclerView recyclerView, recyclerViewFrag1, recyclerViewFrag2, recyclerViewFrag3, recyclerViewGame;
     private ImageView imageView, imageView11, imageView22, imageView33;
-
-
     // var
     private RecycleMainAdapter adapter;
-    private static List<ModelMain> modelMains, listLast, listDramaEgy, listGame;
     private RecycleFrag1Adapter frag1Adapter;
     private RecycleFrag2Adapter frag2Adapter;
     private RecycleFrag3Adapter frag3Adapter;
@@ -59,30 +57,6 @@ public class MainFragment extends Fragment implements BaseSliderView.OnSliderCli
 
     public MainFragment() {
         // Required empty public constructor
-    }
-
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-
-        listDramaEgy = new ArrayList<>();
-
-
-        adapter = new RecycleMainAdapter();
-        adapter.setList(getListGame());
-
-        frag1Adapter = new RecycleFrag1Adapter();
-        frag2Adapter = new RecycleFrag2Adapter();
-        frag3Adapter = new RecycleFrag3Adapter();
-        main2Adapter = new RecycleMain2Adapter();
-
-
-        frag1Adapter.setList(getMainModel());
-        frag2Adapter.setList(getListLast());
-        frag3Adapter.setList(getListDramaEgy());
-        main2Adapter.setList(getMainModel());
-
     }
 
     public static List<ModelMain> getMainModel() {
@@ -135,6 +109,30 @@ public class MainFragment extends Fragment implements BaseSliderView.OnSliderCli
         listGame.add(new ModelMain(R.drawable.sor77));
         listGame.add(new ModelMain(R.drawable.sor99));
         return listGame;
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+
+        listDramaEgy = new ArrayList<>();
+
+
+        adapter = new RecycleMainAdapter();
+        adapter.setList(getListGame());
+
+        frag1Adapter = new RecycleFrag1Adapter();
+        frag2Adapter = new RecycleFrag2Adapter();
+        frag3Adapter = new RecycleFrag3Adapter();
+        main2Adapter = new RecycleMain2Adapter();
+
+
+        frag1Adapter.setList(getMainModel());
+        frag2Adapter.setList(getListLast());
+        frag3Adapter.setList(getListDramaEgy());
+        main2Adapter.setList(getMainModel());
+
     }
 
     @Override

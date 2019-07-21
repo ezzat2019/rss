@@ -23,8 +23,10 @@ import com.example.programmer.rss.custom_classes.CustomViewPager;
 import com.example.programmer.rss.custom_classes.VideoPlayerConfig;
 import com.example.programmer.rss.fragments.ClipsFragment;
 import com.example.programmer.rss.fragments.EpisodesFragment;
+import com.example.programmer.rss.models.ItemEmail;
 import com.example.programmer.rss.models.ItemRoom;
 import com.example.programmer.rss.models.ModelMain;
+import com.example.programmer.rss.repositry.RepositryEmail;
 import com.example.programmer.rss.repositry.RepositryPrefer;
 import com.google.android.exoplayer2.DefaultLoadControl;
 import com.google.android.exoplayer2.DefaultRenderersFactory;
@@ -63,27 +65,30 @@ public class VideoPlayMain2Activity extends AppCompatActivity implements Player.
 
     // ui
     private static PlayerView videoFullScreenPlayer;
-    private TextView txt_title, txt_desc;
-    private Switch aSwitch;
-    private ImageButton btn_share, btn_add;
-    private CustomViewPager viewPager;
-    private TabLayout tableLayout;
-
-
     // var
     private static String videoUri;
     private static SimpleExoPlayer player;
     private static Handler mHandler;
     private static Runnable mRunnable;
     private static Boolean toggleScreen = false;
-    private ViewPagerAdapter2 pagerAdapter2;
     private static List<Fragment> list;
     private static String type;
-    private SharedPreferences sharedPreferences;
     private static boolean isLogin = false;
+    private TextView txt_title, txt_desc;
+    private Switch aSwitch;
+    private ImageButton btn_share, btn_add;
+    private CustomViewPager viewPager;
+    private TabLayout tableLayout;
+    private ViewPagerAdapter2 pagerAdapter2;
+    private SharedPreferences sharedPreferences;
     private RepositryPrefer prefer;
-    private List<ModelMain>mains;
+    private List<ModelMain> mains;
 
+    public static Intent getStartIntent(Context context, String videoUri) {
+        Intent intent = new Intent(context, VideoPlayMain2Activity.class);
+        intent.putExtra(KEY_VIDEO_URI, videoUri);
+        return intent;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,8 +105,8 @@ public class VideoPlayMain2Activity extends AppCompatActivity implements Player.
         videoUri = VideoPlayerConfig.DEFAULT_VIDEO_URL;
 
         sharedPreferences = getSharedPreferences("full", MODE_PRIVATE);
-        prefer=RepositryPrefer.getInstance(getApplicationContext());
-        mains=new ArrayList<>();
+        prefer = RepositryPrefer.getInstance(getApplicationContext());
+        mains = new ArrayList<>();
 
 
         if (!toggleScreen) {
@@ -133,7 +138,6 @@ public class VideoPlayMain2Activity extends AppCompatActivity implements Player.
         }
 
     }
-
 
     private void createViewPageAndTabLayaout() {
         viewPager = findViewById(R.id.view_pager2);
@@ -180,7 +184,9 @@ public class VideoPlayMain2Activity extends AppCompatActivity implements Player.
                 if (isLogin) {
                     Intent intent = new Intent(getApplicationContext(), PreferActivity.class);
 
-                    prefer.insert(new ItemRoom(sharedPreferences.getInt("prefer",0)));
+                    prefer.insert(new ItemRoom(sharedPreferences.getInt("prefer", 0)));
+                    RepositryEmail.getInstance(getApplicationContext())
+                            .insert(new ItemEmail(sharedPreferences.getString("email", ""), sharedPreferences.getInt("prefer", 0)));
 
                     intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                     startActivity(intent);
@@ -265,12 +271,6 @@ public class VideoPlayMain2Activity extends AppCompatActivity implements Player.
             player = ExoPlayerFactory.newSimpleInstance(new DefaultRenderersFactory(this), trackSelector, loadControl);
             videoFullScreenPlayer.setPlayer(player);
         }
-    }
-
-    public static Intent getStartIntent(Context context, String videoUri) {
-        Intent intent = new Intent(context, VideoPlayMain2Activity.class);
-        intent.putExtra(KEY_VIDEO_URI, videoUri);
-        return intent;
     }
 
     private void buildMediaSource(Uri mUri) {

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-
-    android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     tools:context=".VideoPlayMain2Activity">
 
     <FrameLayout
@@ -52,7 +52,6 @@
 
         </RelativeLayout>
     </FrameLayout>
-
 
 
     <com.google.android.exoplayer2.ui.PlayerView
@@ -188,22 +187,22 @@
                         android:layout_marginTop="80dp"
 
 
-
                         android:layout_marginRight="60dp"
                         android:src="@drawable/ic_add_black_24dp"
 
                         />
 
 
-
                 </RelativeLayout>
 
 
             </FrameLayout>
+
             <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_below="@id/frame2">
+
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
@@ -238,15 +237,14 @@
                             android:text="Tuesday" />
 
                     </com.google.android.material.tabs.TabLayout>
+
                     <com.example.programmer.rss.custom_classes.CustomViewPager
+                        android:id="@+id/view_pager2"
                         android:layout_width="match_parent"
                         android:layout_height="210dp"
-                        android:id="@+id/view_pager2"
 
                         android:layout_below="@id/tab_vedio"
-                        android:fitsSystemWindows="true"
-                        />
-
+                        android:fitsSystemWindows="true" />
 
 
                 </RelativeLayout>

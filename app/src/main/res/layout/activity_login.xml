@@ -82,7 +82,6 @@
     </androidx.cardview.widget.CardView>
 
 
-
     <Button
         android:id="@+id/btn_create_account_s"
         android:layout_width="match_parent"
@@ -146,12 +145,11 @@
         android:layout_marginTop="20dp"
         android:layout_toRightOf="@+id/login_button_s"
         android:clickable="true"
+        android:onClick="gotoSignUp"
         android:shadowColor="@color/gray_300"
         android:text="SignUp"
         android:textColor="@color/colorAccent"
         android:textSize="18dp"
-        android:textStyle="bold"
-        android:onClick="gotoSignUp"
-        />
+        android:textStyle="bold" />
 
 </RelativeLayout>

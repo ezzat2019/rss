@@ -9,7 +9,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -28,7 +27,6 @@ import com.example.programmer.rss.adapters.RecycleFrag1Adapter;
 import com.example.programmer.rss.adapters.RecycleFrag2Adapter;
 import com.example.programmer.rss.adapters.RecycleFrag3Adapter;
 import com.example.programmer.rss.models.ModelMain;
-import com.example.programmer.rss.ui.OnItemClickMain;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -55,6 +53,14 @@ public class TvSeriesFragment extends Fragment implements BaseSliderView.OnSlide
 
     public TvSeriesFragment() {
         // Required empty public constructor
+    }
+
+    public static void gotoVodeoActivity(Context context) {
+        Intent intent = new Intent(context, VideoPlayMain2Activity.class);
+
+        intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        context.startActivity(intent);
+
     }
 
     @Override
@@ -109,7 +115,6 @@ public class TvSeriesFragment extends Fragment implements BaseSliderView.OnSlide
 
     }
 
-
     private void createRecycleFrag3(View view) {
         recyclerViewFrag3 = view.findViewById(R.id.rec_rectangle3);
         recyclerViewFrag3.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
@@ -131,7 +136,6 @@ public class TvSeriesFragment extends Fragment implements BaseSliderView.OnSlide
 
 
     }
-
 
     private void createImageListener(View view) {
 
@@ -205,14 +209,6 @@ public class TvSeriesFragment extends Fragment implements BaseSliderView.OnSlide
     public void onSliderClick(BaseSliderView slider) {
         gotoVodeoActivity(getContext());
 
-
-    }
-
-    public static void gotoVodeoActivity(Context context) {
-        Intent intent = new Intent(context, VideoPlayMain2Activity.class);
-
-        intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-        context.startActivity(intent);
 
     }
 

@@ -9,11 +9,11 @@ import java.util.List;
 
 public class ViewPagerAdapter2 extends FragmentPagerAdapter {
     private List<Fragment> fragmentList;
-    private String[] names={"Episodes","Clips"};
+    private String[] names = {"Episodes", "Clips"};
 
     public ViewPagerAdapter2(FragmentManager fm, List<Fragment> fragments) {
         super(fm);
-        this.fragmentList=fragments;
+        this.fragmentList = fragments;
     }
 
     @Nullable

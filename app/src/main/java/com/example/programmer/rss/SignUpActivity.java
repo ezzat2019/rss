@@ -17,6 +17,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.programmer.rss.models.ItemEmail;
+import com.example.programmer.rss.repositry.RepositryEmail;
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
@@ -41,18 +43,34 @@ import java.util.Arrays;
 
 public class SignUpActivity extends AppCompatActivity {
 
+    private static Boolean isEmail = false, isPass = false, ischeck1 = false, isCheck2 = false;
     // ui
     private EditText ed_email, ed_password;
     private Button btn_create;
     private LoginButton loginButton;
     private CheckBox checkBox1, checkBox2;
-
     // var
     private String email, password;
-    private static Boolean isEmail = false, isPass = false, ischeck1 = false, isCheck2 = false;
     private CallbackManager callbackManager;
     private FirebaseAuth mAuth;
     private SharedPreferences sharedPreferences;
+    private RepositryEmail repositryEmail;
+    //Facebook login button
+    private FacebookCallback<LoginResult> callback = new FacebookCallback<LoginResult>() {
+        @Override
+        public void onSuccess(LoginResult loginResult) {
+            Profile profile = Profile.getCurrentProfile();
+
+        }
+
+        @Override
+        public void onCancel() {
+        }
+
+        @Override
+        public void onError(FacebookException e) {
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,9 +91,15 @@ public class SignUpActivity extends AppCompatActivity {
 
         createButtonFace();
 
-        sharedPreferences=LoginActivity.createSharedPerfernce(getApplicationContext());
+        sharedPreferences = LoginActivity.createSharedPerfernce(getApplicationContext());
+
+        inalizeRep();
 
 
+    }
+
+    private void inalizeRep() {
+        repositryEmail = RepositryEmail.getInstance(getApplicationContext());
     }
 
     private void inializeMAuth() {
@@ -129,7 +153,7 @@ public class SignUpActivity extends AppCompatActivity {
 
     private void getUserProfile(final AccessToken currentAccessToken) {
 
-
+        onBackPressed();
         GraphRequest request = GraphRequest.newMeRequest(
                 currentAccessToken, new GraphRequest.GraphJSONObjectCallback() {
                     @Override
@@ -145,17 +169,18 @@ public class SignUpActivity extends AppCompatActivity {
                             SharedPreferences.Editor editor = sharedPreferences.edit();
 
                             editor.putBoolean("is_login", true);
-                            editor.putString("name",first_name+" "+last_name);
-                            editor.putString("img_url",image_url);
-                            editor.putString("email",email);
+                            editor.putString("name", first_name + " " + last_name);
+                            editor.putString("img_url", image_url);
+                            editor.putString("email", email);
                             editor.commit();
-                            Log.d("qqqq", first_name + " " + email + " " + id + " " + image_url);
+                            repositryEmail.insert(new ItemEmail(email, sharedPreferences.getInt("prefer", 0)));
+                            Toast.makeText(SignUpActivity.this, "success", Toast.LENGTH_SHORT).show();
 
                             mAuth.createUserWithEmailAndPassword(email, id).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                                 @Override
                                 public void onComplete(@NonNull Task<AuthResult> task) {
 
-                                    onBackPressed();
+
                                 }
                             });
 
@@ -195,7 +220,6 @@ public class SignUpActivity extends AppCompatActivity {
         });
 
     }
-
 
     private void createCheckBox() {
         checkBox1 = findViewById(R.id.checkbox1);
@@ -265,13 +289,11 @@ public class SignUpActivity extends AppCompatActivity {
 
 
                                 Toast.makeText(SignUpActivity.this, "yes", Toast.LENGTH_SHORT).show();
-                           Intent intent=new Intent(getApplicationContext(),LoginActivity.class);
-                           intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                           startActivity(intent);
-                           finish();
-                            }
-                            else
-                            {
+                                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                                intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                                startActivity(intent);
+                                finish();
+                            } else {
                                 Toast.makeText(SignUpActivity.this, "check internet connection", Toast.LENGTH_SHORT).show();
                             }
 
@@ -345,25 +367,8 @@ public class SignUpActivity extends AppCompatActivity {
         });
     }
 
-    //Facebook login button
-    private FacebookCallback<LoginResult> callback = new FacebookCallback<LoginResult>() {
-        @Override
-        public void onSuccess(LoginResult loginResult) {
-            Profile profile = Profile.getCurrentProfile();
-
-        }
-
-        @Override
-        public void onCancel() {
-        }
-
-        @Override
-        public void onError(FacebookException e) {
-        }
-    };
-
     public void gotoLogin(View view) {
-        Intent intent=new Intent(getApplicationContext(),LoginActivity.class);
+        Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
         startActivity(intent);
         finish();

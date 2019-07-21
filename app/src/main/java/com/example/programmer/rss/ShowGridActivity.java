@@ -1,17 +1,14 @@
 package com.example.programmer.rss;
 
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Context;
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.View;
-import android.widget.Toast;
-
 import com.example.programmer.rss.adapters.RecycleGridAdapter;
-import com.example.programmer.rss.adapters.RecycleVideoAdapter;
 import com.example.programmer.rss.fragments.MainFragment;
 import com.example.programmer.rss.ui.OnItemClickMain;
 
@@ -39,31 +36,22 @@ public class ShowGridActivity extends AppCompatActivity {
     }
 
     private void getIntents() {
-        String type=getIntent().getStringExtra("type");
-        if (type!=null)
-        {
-            if (type.equals("list1"))
-
-            {
+        String type = getIntent().getStringExtra("type");
+        if (type != null) {
+            if (type.equals("list1")) {
 
                 gridAdapter.setList(MainFragment.getListGame());
                 recyclerView.setAdapter(gridAdapter);
-            }
-            else if (type.equals("list2"))
-            {
+            } else if (type.equals("list2")) {
 
                 gridAdapter.setList(MainFragment.getMainModel());
                 recyclerView.setAdapter(gridAdapter);
 
-            }
-            else if (type.equals("list3"))
-            {
+            } else if (type.equals("list3")) {
                 gridAdapter.setList(MainFragment.getListLast());
                 recyclerView.setAdapter(gridAdapter);
 
-            }
-            else if (type.equals("list4"))
-            {
+            } else if (type.equals("list4")) {
                 gridAdapter.setList(MainFragment.getListDramaEgy());
                 recyclerView.setAdapter(gridAdapter);
 
@@ -77,8 +65,9 @@ public class ShowGridActivity extends AppCompatActivity {
             }
         });
     }
-    private  void gotoVodeoActivity()
-    { Intent intent=new Intent(this, VideoPlayMain2Activity.class);
+
+    private void gotoVodeoActivity() {
+        Intent intent = new Intent(this, VideoPlayMain2Activity.class);
 
         intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
         startActivity(intent);
@@ -86,9 +75,9 @@ public class ShowGridActivity extends AppCompatActivity {
     }
 
     private void createRecycleView() {
-        recyclerView=findViewById(R.id.rec_grid);
-        recyclerView.setLayoutManager(new GridLayoutManager(getApplicationContext(),3));
-        gridAdapter=new RecycleGridAdapter();
+        recyclerView = findViewById(R.id.rec_grid);
+        recyclerView.setLayoutManager(new GridLayoutManager(getApplicationContext(), 3));
+        gridAdapter = new RecycleGridAdapter();
 
     }
 
