@@ -14,6 +14,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppStart"
         tools:ignore="GoogleAppIndexingWarning">
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-5418159737524729~2370205444"/>
+
         <activity
             android:name=".ProfileActivity"
             android:theme="@style/AppTheme"></activity>

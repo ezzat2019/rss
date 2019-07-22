@@ -50,6 +50,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
+                android:layoutAnimation="@anim/layout_animation_fall_down"
                 android:layout_marginStart="5dp"
                 android:layout_marginTop="273dp"
                 android:background="?android:attr/selectableItemBackground"

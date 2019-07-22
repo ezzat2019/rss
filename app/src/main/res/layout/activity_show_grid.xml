@@ -30,14 +30,16 @@
 
         </RelativeLayout>
     </FrameLayout>
-
-    <androidx.recyclerview.widget.RecyclerView
+    <com.example.programmer.rss.custom_classes.GridRecyclerView
         android:id="@+id/rec_grid"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentStart="true"
+        android:layoutAnimation="@anim/layout_item_from_top_to_bottom"
         android:layout_alignParentTop="true"
         android:layout_marginStart="0dp"
-        android:layout_marginTop="55dp" />
+        android:layout_marginTop="55dp"/>
+
+
 
 </RelativeLayout>

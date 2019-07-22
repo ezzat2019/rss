@@ -5,9 +5,10 @@
     android:layout_height="match_parent"
     tools:context=".fragments.ChannelsFragment">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rec_channel"
+    <com.example.programmer.rss.custom_classes.GridRecyclerView
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:id="@+id/rec_channel"
+        android:layoutAnimation="@anim/layout_item_from_top_to_bottom"></com.example.programmer.rss.custom_classes.GridRecyclerView>
 
 </FrameLayout>
