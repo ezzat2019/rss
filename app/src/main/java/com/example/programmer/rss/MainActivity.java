@@ -1,5 +1,7 @@
 package com.example.programmer.rss;
 
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
@@ -44,8 +46,8 @@ public class MainActivity extends AppCompatActivity
 
     private static Boolean isLogin = false;
     // ui
-    private SearchView searchView;
-    private ImageButton imageButton;
+    public static SearchView searchView;
+    private static ImageButton imageButton;
     private Toolbar toolbar;
     private CustomViewPager viewPager;
     private TabLayout tabLayout;
@@ -147,6 +149,26 @@ public class MainActivity extends AppCompatActivity
                 return false;
             }
         });
+
+
+    }
+    public static SearchView getSearchView(Activity activity)
+    { searchView = activity.findViewById(R.id.search);
+
+        searchView.setOnSearchClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showImageButton(false);
+            }
+        });
+        searchView.setOnCloseListener(new SearchView.OnCloseListener() {
+            @Override
+            public boolean onClose() {
+                showImageButton(true);
+                return false;
+            }
+        });
+        return searchView;
     }
 
     private void createImageButton() {
@@ -154,7 +176,7 @@ public class MainActivity extends AppCompatActivity
 
     }
 
-    private void showImageButton(boolean b) {
+    private static void showImageButton(boolean b) {
         if (b) {
             imageButton.setVisibility(View.VISIBLE);
         } else

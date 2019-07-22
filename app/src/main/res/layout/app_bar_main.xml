@@ -41,7 +41,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
 
-                    android:layout_centerVertical="true"></androidx.appcompat.widget.SearchView>
+                    android:layout_centerVertical="true"/>
 
             </RelativeLayout>
         </androidx.appcompat.widget.Toolbar>

@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -21,6 +22,7 @@ import com.daimajia.slider.library.SliderLayout;
 import com.daimajia.slider.library.SliderTypes.BaseSliderView;
 import com.daimajia.slider.library.SliderTypes.TextSliderView;
 import com.daimajia.slider.library.Tricks.ViewPagerEx;
+import com.example.programmer.rss.MainActivity;
 import com.example.programmer.rss.R;
 import com.example.programmer.rss.ShowGridActivity;
 import com.example.programmer.rss.VideoPlayMain2Activity;
@@ -47,6 +49,7 @@ public class MainFragment extends Fragment implements BaseSliderView.OnSliderCli
     private SliderLayout mDemoSlider;
     private RecyclerView recyclerView, recyclerViewFrag1, recyclerViewFrag2, recyclerViewFrag3, recyclerViewGame;
     private ImageView imageView, imageView11, imageView22, imageView33;
+    private SearchView searchView;
     // var
     private RecycleMainAdapter adapter;
     private RecycleFrag1Adapter frag1Adapter;
@@ -121,6 +124,7 @@ public class MainFragment extends Fragment implements BaseSliderView.OnSliderCli
 
         adapter = new RecycleMainAdapter();
         adapter.setList(getListGame());
+        Log.d("eeeee",getListGame().get(2).getSource()+"");
 
         frag1Adapter = new RecycleFrag1Adapter();
         frag2Adapter = new RecycleFrag2Adapter();
@@ -215,6 +219,7 @@ public class MainFragment extends Fragment implements BaseSliderView.OnSliderCli
 
     private void createRecycleView(View view) {
         recyclerView = view.findViewById(R.id.rec_main);
+        searchView= MainActivity.getSearchView(getActivity());
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext().getApplicationContext(), LinearLayoutManager.HORIZONTAL, false));
         recyclerView.setAdapter(adapter);
@@ -223,6 +228,18 @@ public class MainFragment extends Fragment implements BaseSliderView.OnSliderCli
             @Override
             public void onClick(int pos) {
                 gotoVideoActivity("list1");
+            }
+        });
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                adapter.getFilter().filter(newText);
+                return false;
             }
         });
 

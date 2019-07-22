@@ -1,9 +1,12 @@
 package com.example.programmer.rss.adapters;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -13,13 +16,17 @@ import com.example.programmer.rss.R;
 import com.example.programmer.rss.models.ModelMain;
 import com.example.programmer.rss.ui.OnItemClickMain;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class RecycleMainAdapter extends RecyclerView.Adapter<RecycleMainAdapter.VH> {
+public class RecycleMainAdapter extends RecyclerView.Adapter<RecycleMainAdapter.VH> implements Filterable {
     protected static OnItemClickMain main;
     private List<ModelMain> list;
+    private List<ModelMain> all;
+    private  static List<ModelMain> alll ;
+
 
     @NonNull
     @Override
@@ -45,6 +52,9 @@ public class RecycleMainAdapter extends RecyclerView.Adapter<RecycleMainAdapter.
 
     public void setList(List<ModelMain> list) {
         this.list = list;
+        all = new ArrayList(list);
+        alll=new ArrayList<>();
+
     }
 
     void addItem(ModelMain modelMain) {
@@ -55,6 +65,11 @@ public class RecycleMainAdapter extends RecyclerView.Adapter<RecycleMainAdapter.
     @Override
     public int getItemCount() {
         return list.size();
+    }
+
+    @Override
+    public Filter getFilter() {
+        return filter;
     }
 
     public static class VH extends RecyclerView.ViewHolder {
@@ -80,4 +95,37 @@ public class RecycleMainAdapter extends RecyclerView.Adapter<RecycleMainAdapter.
 
         }
     }
+
+    private Filter filter = new Filter() {
+        @Override
+        protected FilterResults performFiltering(CharSequence charSequence) {
+            String s=charSequence.toString().trim();
+            for (ModelMain modelMain:all)
+            {
+                if (String.valueOf(modelMain.getSource()).contains(s))
+                {
+                    alll.add(modelMain);
+                }
+            }
+
+            FilterResults results=new FilterResults();
+            results.values=alll;
+            Log.d("eeee55",alll.size()+"");
+
+            return results;
+        }
+
+        @Override
+        protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+            list.clear();
+
+            Log.d("eeeee2", filterResults.values + "");
+            if (filterResults.values != null)
+                list.addAll((List) filterResults.values);
+
+
+            notifyDataSetChanged();
+            alll.clear();
+        }
+    };
 }
