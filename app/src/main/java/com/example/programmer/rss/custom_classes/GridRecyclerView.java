@@ -6,26 +6,37 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.GridLayoutAnimationController;
 
-import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class GridRecyclerView extends RecyclerView {
 
-    /** @see View#View(Context) */
-    public GridRecyclerView(Context context) { super(context); }
+    /**
+     * @see View#View(Context)
+     */
+    public GridRecyclerView(Context context) {
+        super(context);
+    }
 
-    /** @see View#View(Context, AttributeSet) */
-    public GridRecyclerView(Context context, AttributeSet attrs) { super(context, attrs); }
+    /**
+     * @see View#View(Context, AttributeSet)
+     */
+    public GridRecyclerView(Context context, AttributeSet attrs) {
+        super(context, attrs);
+    }
 
-    /** @see View#View(Context, AttributeSet, int) */
-    public GridRecyclerView(Context context, AttributeSet attrs, int defStyle) { super(context, attrs, defStyle); }
+    /**
+     * @see View#View(Context, AttributeSet, int)
+     */
+    public GridRecyclerView(Context context, AttributeSet attrs, int defStyle) {
+        super(context, attrs, defStyle);
+    }
 
     @Override
     protected void attachLayoutAnimationParameters(View child, ViewGroup.LayoutParams params,
                                                    int index, int count) {
         final LayoutManager layoutManager = getLayoutManager();
-        if (getAdapter() != null && layoutManager instanceof GridLayoutManager){
+        if (getAdapter() != null && layoutManager instanceof GridLayoutManager) {
 
             GridLayoutAnimationController.AnimationParameters animationParams =
                     (GridLayoutAnimationController.AnimationParameters) params.layoutAnimationParameters;

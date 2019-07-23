@@ -2,6 +2,7 @@ package com.example.programmer.rss;
 
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 
@@ -19,8 +20,12 @@ import com.google.android.gms.ads.initialization.OnInitializationCompleteListene
 
 
 public class SplashActivity extends AppCompatActivity {
+    // ui
     private SliderLayout mDemoSlider;
     private AdView mAdView;
+
+    // var
+    private SharedPreferences sharedPreferences;
 
 
     @Override
@@ -28,10 +33,15 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
         setContentView(R.layout.activity_splash);
-        createAdsTypical();
-        gotoStartScreen();
-      //  createAds();
 
+        sharedPreferences = LoginActivity.createSharedPerfernce(getApplicationContext());
+        if (sharedPreferences.getBoolean("ads", true)) {
+            createAdsTypical();
+        }
+
+
+        gotoStartScreen();
+        //  createAds();
 
 
     }
@@ -39,7 +49,7 @@ public class SplashActivity extends AppCompatActivity {
     private void createAdsTypical() {
 
         MobileAds.initialize(this,
-                "ca-app-pub-5418159737524729~2370205444");
+                "ca-app-pub-5418159737524729~1005206781");
 
         mAdView = findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();

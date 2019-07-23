@@ -23,10 +23,39 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class RecycleMainAdapter extends RecyclerView.Adapter<RecycleMainAdapter.VH> implements Filterable {
     protected static OnItemClickMain main;
+    private static List<ModelMain> alll;
     private List<ModelMain> list;
     private List<ModelMain> all;
-    private  static List<ModelMain> alll ;
+    private Filter filter = new Filter() {
+        @Override
+        protected FilterResults performFiltering(CharSequence charSequence) {
+            String s = charSequence.toString().trim();
+            for (ModelMain modelMain : all) {
+                if (String.valueOf(modelMain.getSource()).contains(s)) {
+                    alll.add(modelMain);
+                }
+            }
 
+            FilterResults results = new FilterResults();
+            results.values = alll;
+            Log.d("eeee55", alll.size() + "");
+
+            return results;
+        }
+
+        @Override
+        protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+            list.clear();
+
+            Log.d("eeeee2", filterResults.values + "");
+            if (filterResults.values != null)
+                list.addAll((List) filterResults.values);
+
+
+            notifyDataSetChanged();
+            alll.clear();
+        }
+    };
 
     @NonNull
     @Override
@@ -36,7 +65,7 @@ public class RecycleMainAdapter extends RecyclerView.Adapter<RecycleMainAdapter.
     }
 
     public void setOnItemClick(OnItemClickMain main) {
-        this.main = main;
+        RecycleMainAdapter.main = main;
     }
 
     @Override
@@ -53,7 +82,7 @@ public class RecycleMainAdapter extends RecyclerView.Adapter<RecycleMainAdapter.
     public void setList(List<ModelMain> list) {
         this.list = list;
         all = new ArrayList(list);
-        alll=new ArrayList<>();
+        alll = new ArrayList<>();
 
     }
 
@@ -95,37 +124,4 @@ public class RecycleMainAdapter extends RecyclerView.Adapter<RecycleMainAdapter.
 
         }
     }
-
-    private Filter filter = new Filter() {
-        @Override
-        protected FilterResults performFiltering(CharSequence charSequence) {
-            String s=charSequence.toString().trim();
-            for (ModelMain modelMain:all)
-            {
-                if (String.valueOf(modelMain.getSource()).contains(s))
-                {
-                    alll.add(modelMain);
-                }
-            }
-
-            FilterResults results=new FilterResults();
-            results.values=alll;
-            Log.d("eeee55",alll.size()+"");
-
-            return results;
-        }
-
-        @Override
-        protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
-            list.clear();
-
-            Log.d("eeeee2", filterResults.values + "");
-            if (filterResults.values != null)
-                list.addAll((List) filterResults.values);
-
-
-            notifyDataSetChanged();
-            alll.clear();
-        }
-    };
 }

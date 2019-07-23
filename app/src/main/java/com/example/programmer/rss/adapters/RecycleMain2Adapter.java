@@ -29,7 +29,7 @@ public class RecycleMain2Adapter extends RecyclerView.Adapter<RecycleMain2Adapte
     }
 
     public void setOnItemClick(OnItemClickMain main) {
-        this.main = main;
+        RecycleMain2Adapter.main = main;
     }
 
     @Override

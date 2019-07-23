@@ -158,7 +158,7 @@ public class ProgramFragment extends Fragment implements BaseSliderView.OnSlider
     }
 
     void createSlider(View view) {
-        mDemoSlider = (SliderLayout) view.findViewById(R.id.slider2);
+        mDemoSlider = view.findViewById(R.id.slider2);
 
         HashMap<String, String> url_maps = new HashMap<String, String>();
 

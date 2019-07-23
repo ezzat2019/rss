@@ -28,7 +28,7 @@ public class RecycleGridAdapter extends RecyclerView.Adapter<RecycleGridAdapter.
     }
 
     public void setOnItemClick(OnItemClickMain main) {
-        this.main = main;
+        RecycleGridAdapter.main = main;
     }
 
     @Override

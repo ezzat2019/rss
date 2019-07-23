@@ -23,11 +23,11 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
         android:layout_marginTop="27dp"
-        android:layoutAnimation="@anim/layout_animation_fall_down"
-
         android:background="?android:attr/selectableItemBackground"
 
         android:clickable="true"
+
+        android:layoutAnimation="@anim/layout_animation_fall_down"
         android:paddingLeft="3dp" />
 
     <TextView

@@ -29,7 +29,7 @@ public class RecycleVideoAdapter extends RecyclerView.Adapter<RecycleVideoAdapte
     }
 
     public void setOnItemClick(OnItemClickMain main) {
-        this.main = main;
+        RecycleVideoAdapter.main = main;
     }
 
     @Override

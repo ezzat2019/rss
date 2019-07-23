@@ -28,7 +28,7 @@ public class RecycleChannelAdapter extends RecyclerView.Adapter<RecycleChannelAd
     }
 
     public void setOnItemClick(OnItemClickMain main) {
-        this.main = main;
+        RecycleChannelAdapter.main = main;
     }
 
     @Override

@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.CompoundButton;
 import android.widget.ImageButton;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -65,9 +66,9 @@ public class VideoPlayMain2Activity extends AppCompatActivity implements Player.
 
     // ui
     private static PlayerView videoFullScreenPlayer;
+    private static SimpleExoPlayer player;
     // var
     private static String videoUri;
-    private static SimpleExoPlayer player;
     private static Handler mHandler;
     private static Runnable mRunnable;
     private static Boolean toggleScreen = false;
@@ -81,6 +82,7 @@ public class VideoPlayMain2Activity extends AppCompatActivity implements Player.
     private TabLayout tableLayout;
     private ViewPagerAdapter2 pagerAdapter2;
     private SharedPreferences sharedPreferences;
+    private SharedPreferences sharedPreferences2;
     private RepositryPrefer prefer;
     private List<ModelMain> mains;
 
@@ -107,24 +109,24 @@ public class VideoPlayMain2Activity extends AppCompatActivity implements Player.
         sharedPreferences = getSharedPreferences("full", MODE_PRIVATE);
         prefer = RepositryPrefer.getInstance(getApplicationContext());
         mains = new ArrayList<>();
-
+        sharedPreferences2 = LoginActivity.createSharedPerfernce(getApplicationContext());
 
         if (!toggleScreen) {
             createTxtName();
 
-            createSwitch();
 
+            createSwitch();
             createImageButton();
+
 
         }
 
 
         setUp();
 
-        sharedPreferences = LoginActivity.createSharedPerfernce(getApplicationContext());
-
 
     }
+
 
     @Override
     protected void onResume() {
@@ -180,13 +182,13 @@ public class VideoPlayMain2Activity extends AppCompatActivity implements Player.
             @Override
             public void onClick(View view) {
 
-                isLogin = sharedPreferences.getBoolean("is_login", false);
+                isLogin = sharedPreferences2.getBoolean("is_login", false);
                 if (isLogin) {
                     Intent intent = new Intent(getApplicationContext(), PreferActivity.class);
 
-                    prefer.insert(new ItemRoom(sharedPreferences.getInt("prefer", 0)));
+                    prefer.insert(new ItemRoom(sharedPreferences2.getInt("prefer", 0)));
                     RepositryEmail.getInstance(getApplicationContext())
-                            .insert(new ItemEmail(sharedPreferences.getString("email", ""), sharedPreferences.getInt("prefer", 0)));
+                            .insert(new ItemEmail(sharedPreferences2.getString("email", ""), sharedPreferences2.getInt("prefer", 0)));
 
                     intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                     startActivity(intent);
@@ -231,7 +233,35 @@ public class VideoPlayMain2Activity extends AppCompatActivity implements Player.
     private void createSwitch() {
         aSwitch = findViewById(R.id.swittch);
 
-        aSwitch.setChecked(true);
+        aSwitch.setChecked(sharedPreferences2.getBoolean("ads", true));
+
+        aSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, final boolean b) {
+                if (!b) {
+                    AlertDialog alertDialog = new AlertDialog.Builder(VideoPlayMain2Activity.this)
+                            .setMessage("Are you sure want not display ADS")
+                            .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    sharedPreferences2.edit().putBoolean("ads", false).commit();
+
+                                }
+                            }).setNegativeButton("No", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    aSwitch.setChecked(true);
+                                    sharedPreferences2.edit().putBoolean("ads", true).commit();
+
+                                }
+                            }).create();
+                    alertDialog.show();
+
+                } else if (b) {
+                    sharedPreferences2.edit().putBoolean("ads", true).commit();
+                }
+            }
+        });
 
     }
 
@@ -401,7 +431,7 @@ public class VideoPlayMain2Activity extends AppCompatActivity implements Player.
 
 
     public void full(View view) {
-        SharedPreferences.Editor editor = sharedPreferences.edit();
+        SharedPreferences.Editor editor = sharedPreferences2.edit();
         editor.putString("type", type);
         editor.commit();
 

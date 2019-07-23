@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.util.Patterns;
 import android.view.KeyEvent;
@@ -53,6 +54,8 @@ public class LoginActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private Boolean isLogin = false;
     private RepositryEmail repositryEmail;
+    private Handler handler;
+    private Runnable runnable;
     //Facebook login button
     private FacebookCallback<LoginResult> callback = new FacebookCallback<LoginResult>() {
         @Override
@@ -94,8 +97,49 @@ public class LoginActivity extends AppCompatActivity {
         createSharedPerfernce(getApplicationContext());
 
         inalizeRep();
+        createCheckStsn();
 
 
+    }
+
+    private void createCheckStsn() {
+
+        handler = new Handler();
+        runnable = new Runnable() {
+            @Override
+            public void run() {
+                email = ed_email.getText().toString().trim();
+                password = ed_password.getText().toString();
+
+
+                if (email.equals("") || !Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+                    ed_email.setBackground(getResources().getDrawable(R.drawable.bg_edittext_normal));
+
+                    isEmail = false;
+                } else {
+                    ed_email.setBackground(getResources().getDrawable(R.drawable.bg_edittext_focused));
+                    isEmail = true;
+                }
+
+
+                if (password.length() < 6) {
+                    ed_password.setBackground(getResources().getDrawable(R.drawable.bg_edittext_normal));
+
+                    isPass = false;
+
+                } else {
+                    ed_password.setBackground(getResources().getDrawable(R.drawable.bg_edittext_focused));
+                    isPass = true;
+                }
+                isReady(isEmail, isPass);
+
+                handler.postDelayed(runnable, 1000);
+
+            }
+        };
+
+
+        handler.postDelayed(runnable, 1000);
     }
 
     private void inalizeRep() {
@@ -181,7 +225,7 @@ public class LoginActivity extends AppCompatActivity {
                                 public void onComplete(@NonNull Task<AuthResult> task) {
 
                                     if (task.isSuccessful()) {
-
+                                        finish();
                                     }
 
                                 }
@@ -225,6 +269,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void createButton() {
+
         btn_Login = findViewById(R.id.btn_create_account_s);
         btn_Login.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -52,7 +52,6 @@ public class ChannelsFragment extends Fragment {
         modelMains.add(new ModelMain(R.drawable.s5));
         modelMains.add(new ModelMain(R.drawable.s6));
         modelMains.add(new ModelMain(R.drawable.s7));
-        ;
         modelMains.add(new ModelMain(R.drawable.s9));
         modelMains.add(new ModelMain(R.drawable.s10));
         modelMains.add(new ModelMain(R.drawable.s5));

@@ -124,7 +124,7 @@ public class MainFragment extends Fragment implements BaseSliderView.OnSliderCli
 
         adapter = new RecycleMainAdapter();
         adapter.setList(getListGame());
-        Log.d("eeeee",getListGame().get(2).getSource()+"");
+        Log.d("eeeee", getListGame().get(2).getSource() + "");
 
         frag1Adapter = new RecycleFrag1Adapter();
         frag2Adapter = new RecycleFrag2Adapter();
@@ -219,7 +219,7 @@ public class MainFragment extends Fragment implements BaseSliderView.OnSliderCli
 
     private void createRecycleView(View view) {
         recyclerView = view.findViewById(R.id.rec_main);
-        searchView= MainActivity.getSearchView(getActivity());
+        searchView = MainActivity.getSearchView(getActivity());
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext().getApplicationContext(), LinearLayoutManager.HORIZONTAL, false));
         recyclerView.setAdapter(adapter);
@@ -297,7 +297,7 @@ public class MainFragment extends Fragment implements BaseSliderView.OnSliderCli
     }
 
     void createSlider(View view) {
-        mDemoSlider = (SliderLayout) view.findViewById(R.id.slider2);
+        mDemoSlider = view.findViewById(R.id.slider2);
 
         HashMap<String, String> url_maps = new HashMap<String, String>();
 

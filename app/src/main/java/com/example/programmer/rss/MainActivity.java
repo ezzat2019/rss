@@ -1,7 +1,6 @@
 package com.example.programmer.rss;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
@@ -44,9 +43,9 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    private static Boolean isLogin = false;
     // ui
     public static SearchView searchView;
+    private static Boolean isLogin = false;
     private static ImageButton imageButton;
     private Toolbar toolbar;
     private CustomViewPager viewPager;
@@ -57,6 +56,32 @@ public class MainActivity extends AppCompatActivity
     private List<Fragment> fragmentList;
     private FirebaseAuth mAuth;
     private SharedPreferences sharedPreferences;
+
+    public static SearchView getSearchView(Activity activity) {
+        searchView = activity.findViewById(R.id.search);
+
+        searchView.setOnSearchClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showImageButton(false);
+            }
+        });
+        searchView.setOnCloseListener(new SearchView.OnCloseListener() {
+            @Override
+            public boolean onClose() {
+                showImageButton(true);
+                return false;
+            }
+        });
+        return searchView;
+    }
+
+    private static void showImageButton(boolean b) {
+        if (b) {
+            imageButton.setVisibility(View.VISIBLE);
+        } else
+            imageButton.setVisibility(View.GONE);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -122,7 +147,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void createViewPageAndTabLayOut() {
-        viewPager = (CustomViewPager) findViewById(R.id.view_pager);
+        viewPager = findViewById(R.id.view_pager);
         viewPager.setPagingEnabled(false);
 
         tabLayout = findViewById(R.id.tab);
@@ -152,35 +177,10 @@ public class MainActivity extends AppCompatActivity
 
 
     }
-    public static SearchView getSearchView(Activity activity)
-    { searchView = activity.findViewById(R.id.search);
-
-        searchView.setOnSearchClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                showImageButton(false);
-            }
-        });
-        searchView.setOnCloseListener(new SearchView.OnCloseListener() {
-            @Override
-            public boolean onClose() {
-                showImageButton(true);
-                return false;
-            }
-        });
-        return searchView;
-    }
 
     private void createImageButton() {
         imageButton = findViewById(R.id.image_button);
 
-    }
-
-    private static void showImageButton(boolean b) {
-        if (b) {
-            imageButton.setVisibility(View.VISIBLE);
-        } else
-            imageButton.setVisibility(View.GONE);
     }
 
     private void createDrawer() {

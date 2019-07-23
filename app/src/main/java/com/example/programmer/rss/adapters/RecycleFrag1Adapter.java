@@ -28,7 +28,7 @@ public class RecycleFrag1Adapter extends RecyclerView.Adapter<RecycleFrag1Adapte
     }
 
     public void setOnItemClick(OnItemClickMain main) {
-        this.main = main;
+        RecycleFrag1Adapter.main = main;
     }
 
     @Override

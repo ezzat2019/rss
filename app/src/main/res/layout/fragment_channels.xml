@@ -6,9 +6,9 @@
     tools:context=".fragments.ChannelsFragment">
 
     <com.example.programmer.rss.custom_classes.GridRecyclerView
+        android:id="@+id/rec_channel"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/rec_channel"
         android:layoutAnimation="@anim/layout_item_from_top_to_bottom"></com.example.programmer.rss.custom_classes.GridRecyclerView>
 
 </FrameLayout>

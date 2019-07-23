@@ -21,10 +21,10 @@
         android:id="@+id/rec_rectangle2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-android:layoutAnimation="@anim/layout_animation_fall_down"
         android:layout_marginStart="5dp"
-
         android:layout_marginTop="27dp"
+
+        android:layoutAnimation="@anim/layout_animation_fall_down"
         android:paddingLeft="3dp" />
 
     <TextView

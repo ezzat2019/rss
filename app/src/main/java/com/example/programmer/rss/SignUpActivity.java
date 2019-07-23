@@ -3,6 +3,7 @@ package com.example.programmer.rss;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.util.Patterns;
 import android.view.KeyEvent;
@@ -55,6 +56,8 @@ public class SignUpActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private SharedPreferences sharedPreferences;
     private RepositryEmail repositryEmail;
+    private Handler handler;
+    private Runnable runnable;
     //Facebook login button
     private FacebookCallback<LoginResult> callback = new FacebookCallback<LoginResult>() {
         @Override
@@ -95,7 +98,49 @@ public class SignUpActivity extends AppCompatActivity {
 
         inalizeRep();
 
+        createCheckStsn();
 
+
+    }
+
+    private void createCheckStsn() {
+
+        handler = new Handler();
+        runnable = new Runnable() {
+            @Override
+            public void run() {
+                email = ed_email.getText().toString().trim();
+                password = ed_password.getText().toString();
+
+
+                if (email.equals("") || !Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+                    ed_email.setBackground(getResources().getDrawable(R.drawable.bg_edittext_normal));
+
+                    isEmail = false;
+                } else {
+                    ed_email.setBackground(getResources().getDrawable(R.drawable.bg_edittext_focused));
+                    isEmail = true;
+                }
+
+
+                if (password.length() < 6) {
+                    ed_password.setBackground(getResources().getDrawable(R.drawable.bg_edittext_normal));
+
+                    isPass = false;
+
+                } else {
+                    ed_password.setBackground(getResources().getDrawable(R.drawable.bg_edittext_focused));
+                    isPass = true;
+                }
+                isReady(isEmail, isPass, ischeck1, isCheck2);
+
+                handler.postDelayed(runnable, 1000);
+
+            }
+        };
+
+
+        handler.postDelayed(runnable, 1000);
     }
 
     private void inalizeRep() {
@@ -228,22 +273,14 @@ public class SignUpActivity extends AppCompatActivity {
         checkBox1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                if (b) {
-                    ischeck1 = true;
-                } else {
-                    ischeck1 = false;
-                }
+                ischeck1 = b;
                 isReady(isEmail, isPass, ischeck1, isCheck2);
             }
         });
         checkBox2.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                if (b) {
-                    isCheck2 = true;
-                } else {
-                    isCheck2 = false;
-                }
+                isCheck2 = b;
                 isReady(isEmail, isPass, ischeck1, isCheck2);
             }
         });

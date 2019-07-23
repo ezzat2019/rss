@@ -29,7 +29,7 @@ public class RecyclePreferdAdapter extends RecyclerView.Adapter<RecyclePreferdAd
     }
 
     public void setOnItemClick(OnItemClickMain main) {
-        this.main = main;
+        RecyclePreferdAdapter.main = main;
     }
 
     @Override
