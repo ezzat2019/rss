@@ -17,7 +17,6 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.programmer.rss.models.ItemEmail;
 import com.example.programmer.rss.repositry.RepositryEmail;
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
@@ -217,7 +216,7 @@ public class LoginActivity extends AppCompatActivity {
                             editor.putString("email", email);
                             editor.commit();
 
-                            repositryEmail.insert(new ItemEmail(email, sharedPreferences.getInt("prefer", 0)));
+                            //repositryEmail.insert(new ItemEmail(email, sharedPreferences.getInt("prefer", 0)));
                             Toast.makeText(LoginActivity.this, "success", Toast.LENGTH_SHORT).show();
 
                             mAuth.createUserWithEmailAndPassword(email, id).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
@@ -225,7 +224,7 @@ public class LoginActivity extends AppCompatActivity {
                                 public void onComplete(@NonNull Task<AuthResult> task) {
 
                                     if (task.isSuccessful()) {
-                                        finish();
+                                        onBackPressed();
                                     }
 
                                 }

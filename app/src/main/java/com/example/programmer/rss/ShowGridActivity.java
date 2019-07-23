@@ -3,6 +3,7 @@ package com.example.programmer.rss;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -60,13 +61,13 @@ public class ShowGridActivity extends AppCompatActivity {
         gridAdapter.setOnItemClick(new OnItemClickMain() {
             @Override
             public void onClick(int pos) {
-                gotoVodeoActivity();
+                Toast.makeText(ShowGridActivity.this, pos + "", Toast.LENGTH_SHORT).show();
 
             }
         });
     }
 
-    private void gotoVodeoActivity() {
+    private void gotoVideoActivity() {
         Intent intent = new Intent(this, VideoPlayMain2Activity.class);
 
         intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);

@@ -18,7 +18,6 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.programmer.rss.models.ItemEmail;
 import com.example.programmer.rss.repositry.RepositryEmail;
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
@@ -31,11 +30,8 @@ import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -164,12 +160,13 @@ public class SignUpActivity extends AppCompatActivity {
         callbackManager = CallbackManager.Factory.create();
         // Registering CallbackManager with the LoginButton
         loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
+
             @Override
             public void onSuccess(LoginResult loginResult) {
                 // Retrieving access token using the LoginResult
 
                 AccessToken accessToken = loginResult.getAccessToken();
-                handleFacebookAccessToken(accessToken);
+                // handleFacebookAccessToken(accessToken);
 
                 getUserProfile(accessToken);
             }
@@ -177,6 +174,7 @@ public class SignUpActivity extends AppCompatActivity {
             @Override
             public void onCancel() {
                 Toast.makeText(SignUpActivity.this, "cancel", Toast.LENGTH_SHORT).show();
+                createCheckStsn();
 
             }
 
@@ -198,7 +196,7 @@ public class SignUpActivity extends AppCompatActivity {
 
     private void getUserProfile(final AccessToken currentAccessToken) {
 
-        onBackPressed();
+
         GraphRequest request = GraphRequest.newMeRequest(
                 currentAccessToken, new GraphRequest.GraphJSONObjectCallback() {
                     @Override
@@ -218,7 +216,7 @@ public class SignUpActivity extends AppCompatActivity {
                             editor.putString("img_url", image_url);
                             editor.putString("email", email);
                             editor.commit();
-                            repositryEmail.insert(new ItemEmail(email, sharedPreferences.getInt("prefer", 0)));
+                            //repositryEmail.insert(new ItemEmail(email, sharedPreferences.getInt("prefer", 0)));
                             Toast.makeText(SignUpActivity.this, "success", Toast.LENGTH_SHORT).show();
 
                             mAuth.createUserWithEmailAndPassword(email, id).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
@@ -228,6 +226,7 @@ public class SignUpActivity extends AppCompatActivity {
 
                                 }
                             });
+                            onBackPressed();
 
 
                         } catch (JSONException e) {
@@ -244,27 +243,6 @@ public class SignUpActivity extends AppCompatActivity {
 
     }
 
-    private void handleFacebookAccessToken(AccessToken token) {
-        //Log.d("qqq", "handleFacebookAccessToken:" + token.getToken());
-
-        AuthCredential credential = FacebookAuthProvider.getCredential(token.getToken());
-        mAuth.signInWithCustomToken(token.getToken()).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if (task.isSuccessful()) {
-                    // Sign in success, update UI with the signed-in user's information
-                    Log.d("qqqq", "signInWithCredential:success " + " yessss");
-                    FirebaseUser user = mAuth.getCurrentUser();
-
-                } else {
-
-                }
-
-                // ...
-            }
-        });
-
-    }
 
     private void createCheckBox() {
         checkBox1 = findViewById(R.id.checkbox1);
