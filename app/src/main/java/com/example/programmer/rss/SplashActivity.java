@@ -1,11 +1,17 @@
 package com.example.programmer.rss;
 
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.os.Handler;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 
@@ -19,13 +25,11 @@ import com.google.android.gms.ads.initialization.InitializationStatus;
 import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 
 
+@SuppressWarnings("UnusedReturnValue")
 public class SplashActivity extends AppCompatActivity {
     // ui
     private SliderLayout mDemoSlider;
-    private AdView mAdView;
-
-    // var
-    private SharedPreferences sharedPreferences;
+    private NetworkChangeReceiver receiver;
 
 
     @Override
@@ -34,15 +38,65 @@ public class SplashActivity extends AppCompatActivity {
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
         setContentView(R.layout.activity_splash);
 
-        sharedPreferences = LoginActivity.createSharedPerfernce(getApplicationContext());
-        if (sharedPreferences.getBoolean("ads", true)) {
-            createAdsTypical();
+
+        receiver = new NetworkChangeReceiver();
+        registerReceiver(receiver, new IntentFilter("android.net.conn.CONNECTIVITY_CHANGE"));
+
+
+    }
+
+    public boolean checkInternet() {
+        ConnectivityManager manager = (ConnectivityManager) getSystemService(CONNECTIVITY_SERVICE);
+        if (manager.getActiveNetworkInfo() == null) {
+            showDialog();
+            return false;
+        } else {
+            // var
+            SharedPreferences sharedPreferences = LoginActivity.createSharedPerfernce(getApplicationContext());
+            if (sharedPreferences.getBoolean("ads", true)) {
+                createAdsTypical();
+            }
+
+            unregisterReceiver(receiver);
+            gotoStartScreen();
+
+            return true;
+
         }
 
+    }
 
-        gotoStartScreen();
-        //  createAds();
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (receiver.getAbortBroadcast())
+            unregisterReceiver(receiver);
+    }
 
+    private void showDialog() {
+
+
+        final AlertDialog dialog = new AlertDialog.Builder(SplashActivity.this)
+
+                .setTitle(R.string.my_title_dialog_internet)
+                .setPositiveButton(R.string.try_again, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        checkInternet();
+
+                    }
+                }) //Set to null. We override the onclick
+                .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        finish();
+
+                    }
+                }).setMessage(R.string.dialog_message)
+                .create();
+
+
+        dialog.show();
 
     }
 
@@ -51,7 +105,7 @@ public class SplashActivity extends AppCompatActivity {
         MobileAds.initialize(this,
                 "ca-app-pub-5418159737524729~1005206781");
 
-        mAdView = findViewById(R.id.adView);
+        AdView mAdView = findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
 
@@ -121,6 +175,19 @@ public class SplashActivity extends AppCompatActivity {
 
             }
         }, 3000);
+    }
+
+    public class NetworkChangeReceiver extends BroadcastReceiver {
+
+        @Override
+        public void onReceive(final Context context, final Intent intent) {
+
+            checkInternet();
+
+
+        }
+
+
     }
 
 

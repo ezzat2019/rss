@@ -2,10 +2,12 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-
+android:foreground="?attr/selectableItemBackgroundBorderless"
     android:layout_margin="8dp"
+
     android:background="@color/colorPrimary"
     android:orientation="vertical"
+    android:elevation="3dp"
 
     >
 
@@ -14,6 +16,8 @@
         android:layout_width="183dp"
         android:layout_height="135dp"
         android:background="#2E2E2E"
+        android:contentDescription="@string/movie"
+        android:foreground="?attr/selectableItemBackgroundBorderless"
         android:scaleType="fitXY"
         android:src="@drawable/icon_sahed" />
 

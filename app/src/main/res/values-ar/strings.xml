@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="hello_blank_fragment">اهلا جزئيه فارغه</string>
+    <string name="appwidget_text">لم يتم اختيار أي مقطع فديو</string>
+    <string name="add_widget">اضافه مقطع فرعى</string>
+    <string name="my_title_dialog_internet">لا يوجد اتصال بالانترنت</string>
+    <string name="try_again">حاول مره اخرى</string>
+    <string name="cancel">الغاء</string>
+    <string name="dialog_message">عليك الاتصال بالانترنت اولا</string>
+    <string name="Populer">الافلام</string>
+    <string name="trend">افلام اكثر رواجا</string>
+    <string name="login">تسجيل دخول</string>
+    <string name="communicate">راسلنا</string>
+    <string name="shark">التقيم والابلاغ</string>
+    <string name="privacy">حقوق الملكيه</string>
+    <string name="create_account">انشاء حساب جديد</string>
+    <string name="advertisement">الاعلانات</string>
+    <string name="login_with_account">تسجيل الدخول باستخدام الحساب</string>
+    <string name="meesage">تحتاج إلى حساب لمشاهدة برامجك المفضلة على أجهزة مختلفة</string>
+    <string name="email">البريد الالكتروني</string>
+    <string name="password">كلمه المرور</string>
+    <string name="dont">ليس لدي حساب فوق</string>
+    <string name="signUp">الاشتراك</string>
+    <string name="create">إنشاء حساب جديد</string>
+    <string name="accept">قبول الشروط والأحكام</string>
+    <string name="recviveٍ">لا أريد تلقي رسائل إعلانية من SAHAHID</string>
+    <string name="name">الاسم</string>
+    <string name="name2">الاسم :</string>
+    <string name="email2">البريد الاكترونى :</string>
+    <string name="preferd">اذهب الى المفضلة</string>
+    <string name="logout">تسجيل الخروج</string>
+    <string name="error_toast">اضغط مرة أخرى للخروج </string>
+    <string name="success">النجاح</string>
+    <string name="yes">نعم</string>
+    <string name="check_internet">التحقق من اتصال إنترنت</string>
+    <string name="incorect_email">في البريد الإلكتروني الصحيح أو كلمة المرور</string>
+    <string name="error_happen">حدث بعض الخطأ</string>
+    <string name="no_trailer">لا يوجد مقطورة متاحة الآن</string>
+    <string name="sahed">شاهد</string>
+    <string name="share">مشاركه</string>
+    <string name="add">اضافه</string>
+    <string name="movie">فيلم</string>
+    <string name="attention">الاهتمام!</string>
+    <string name="attention2">يجب عليك تسجيل الدخول مع حسابك إذا كنت ترغب في إنشاء حساب جديد انقر فوق موافق</string>
+    <string name="ok">موافق</string>
+    <string name="intent">يا تحقق من الفيديو الخاص بي في:</string>
+    <string name="ads">هل تريد بالتأكيد عدم عرض ADS</string>
+    <string name="todo">مساعد</string>
+    <string name="human">هذه هي صورة للإنسان</string>
+    <string name="profile">صورة ملف التعريف</string>
+    <string name="pass">يجب أن تكون كلمة المرور 6 أحرف على الأقل</string>
+</resources>

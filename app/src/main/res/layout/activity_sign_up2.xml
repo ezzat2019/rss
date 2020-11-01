@@ -1,18 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".SignUpActivity">
-
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
     <TextView
         android:id="@+id/txt1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="25dp"
-        android:text="Create a new account"
+        android:text="@string/create"
         android:textColor="#000"
         android:textSize="18dp"
         android:textStyle="bold" />
@@ -24,8 +26,7 @@
         android:layout_below="@+id/txt1"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="5dp"
-        android:text="You need an account to watch your favorite
-           programs on different devices"
+        android:text="@string/meesage"
         android:textAlignment="center"
         android:textColor="@color/gray_300"
         android:textSize="16dp" />
@@ -35,10 +36,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/txt2"
-        android:layout_marginLeft="15dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="45dp"
-        android:layout_marginRight="15dp"
-        app:cardElevation="7dp">
+        android:layout_marginEnd="16dp"
+        app:cardElevation="6dp">
 
         <EditText
             android:id="@+id/ed_email"
@@ -46,11 +47,8 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/txt2"
             android:background="@drawable/bg_edittext"
-
-
-            android:hint="Email"
+            android:hint="@string/email"
             android:inputType="textWebEmailAddress"
-
             android:textColorHint="@color/gray_50"
 
             />
@@ -63,10 +61,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/card1"
-        android:layout_marginLeft="15dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="18dp"
-        android:layout_marginRight="15dp"
-        app:cardElevation="7dp">
+        android:layout_marginEnd="16dp"
+        app:cardElevation="6dp">
 
         <EditText
             android:id="@+id/ed_password"
@@ -74,7 +72,7 @@
             android:layout_height="wrap_content"
 
             android:background="@drawable/bg_edittext"
-            android:hint="Password"
+            android:hint="@string/password"
             android:inputType="textPassword"
             android:textColorHint="@color/gray_50" />
 
@@ -86,10 +84,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/card2"
-        android:layout_marginLeft="15dp"
-        android:layout_marginTop="25dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="26dp"
 
-        android:text="Accept Terms and Conditions"
+        android:text="@string/accept"
 
         android:textColor="@color/colorAccent"
 
@@ -101,10 +99,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/checkbox1"
-        android:layout_marginLeft="15dp"
-        android:layout_marginTop="3dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="4dp"
 
-        android:text="I do not want to receive ad messages from SAHAHIDٍ"
+        android:text="@string/recviveٍ"
 
         android:textColor="@color/colorAccent"
 
@@ -116,12 +114,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/checkbox2"
-        android:layout_marginLeft="15dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="45dp"
-        android:layout_marginRight="15dp"
+        android:layout_marginEnd="16dp"
         android:background="@color/gray_50"
         android:enabled="false"
-        android:text="Create Account"
+        android:text="@string/create_account"
         android:textAllCaps="false"
 
         />
@@ -132,13 +130,9 @@
         android:layout_height="wrap_content"
 
         android:layout_below="@id/btn_create_account"
-        android:layout_marginLeft="15dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="30dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        />
 
     <View
         android:id="@+id/view"
@@ -155,11 +149,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/view"
-        android:layout_marginLeft="70dp"
+        android:layout_marginStart="70dp"
         android:layout_marginTop="20dp"
         android:autoLink="all"
         android:linksClickable="true"
-        android:text="I have account click "
+        android:text="@string/login_with_account"
         android:textColor="#000"
         android:textColorLink="@color/colorAccent"
         android:textSize="18dp"
@@ -170,15 +164,17 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/view"
-        android:layout_marginLeft="50dp"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
-        android:layout_toRightOf="@+id/login_button"
-        android:clickable="true"
+        android:layout_toEndOf="@+id/txt_login"
+
         android:onClick="gotoLogin"
         android:shadowColor="@color/gray_300"
-        android:text="Login"
+        android:text="@string/login"
         android:textColor="@color/colorAccent"
         android:textSize="18dp"
         android:textStyle="bold" />
-
 </RelativeLayout>
+
+
+</ScrollView>

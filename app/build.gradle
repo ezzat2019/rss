@@ -3,6 +3,16 @@ apply plugin: 'com.google.gms.google-services'
 
 android {
     compileSdkVersion 28
+
+    signingConfigs {
+        release {
+            storeFile file("movie.jks")
+            storePassword '123456'
+            keyAlias 'key1'
+            keyPassword '123456'
+        }
+    }
+
     defaultConfig {
         applicationId "com.example.programmer.rss"
         minSdkVersion 21
@@ -11,10 +21,20 @@ android {
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
+    lintOptions {
+        checkReleaseBuilds false
+        // Or, if you prefer, you can continue to check for errors in release builds,
+        // but continue the build even when errors are found:
+        abortOnError false
+    }
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+        }
+        debug {
+            debuggable true
         }
     }
 }
@@ -51,7 +71,6 @@ dependencies {
     implementation 'com.github.bumptech.glide:glide:4.3.1'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.3.1'
     implementation "com.android.support:support-v4:+"
-    implementation 'com.squareup.picasso:picasso:2.3.2'
     implementation 'com.nineoldandroids:library:2.4.0'
     implementation 'com.daimajia.slider:library:1.1.5@aar'
     implementation 'de.hdodenhof:circleimageview:3.0.0'
@@ -64,28 +83,30 @@ dependencies {
 
     implementation 'com.facebook.android:facebook-android-sdk:[5,6)'
 
-    def rxbinding_version = "3.0.0-alpha2"
-// Rx Binding Library
-    implementation "com.jakewharton.rxbinding3:rxbinding:$rxbinding_version"
-
 
 //Convert Observable to LiveData
 //This will allow us to convert Observables (or Flowables) into LiveData objects.
     implementation "android.arch.lifecycle:reactivestreams:1.1.1"
+
+    implementation 'com.github.HaarigerHarald:android-youtubeExtractor:v1.7.0'
 
 
 //  Rx observable
 // RxJava Call Adapter
     implementation "com.squareup.retrofit2:adapter-rxjava2:2.5.0"
 
-
+    implementation 'com.squareup.picasso:picasso:2.3.2'
     //ViewModel and LiveData
 
     implementation "android.arch.lifecycle:extensions:$lifecycle_version"
-// Room
-    def room_version = "1.1.1-rc1"
+// ROOM
+    def room_version = "1.1.1"
     implementation "android.arch.persistence.room:runtime:$room_version"
     annotationProcessor "android.arch.persistence.room:compiler:$room_version"
+    // Test helpers for ROOM
+    testImplementation "android.arch.persistence.room:testing:$room_version"
     implementation 'com.google.android.gms:play-services-ads:18.1.0'
+    implementation 'com.google.android.exoplayer:exoplayer:2.7.3'
+    implementation 'com.intuit.sdp:sdp-android:1.0.6'
 
 }

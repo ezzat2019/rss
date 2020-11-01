@@ -12,14 +12,20 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.programmer.rss.R;
-import com.example.programmer.rss.models.ModelMain;
+import com.example.programmer.rss.models.video.Results;
 import com.example.programmer.rss.ui.OnItemClickMain;
 
 import java.util.List;
 
 public class RecycleVideoAdapter extends RecyclerView.Adapter<RecycleVideoAdapter.VH> {
-    protected static OnItemClickMain main;
-    private List<ModelMain> list;
+
+    public final static String BASE_URL_IMAGE = "https://image.tmdb.org/t/p/w500/";
+
+
+    // var
+    private Context context;
+    private OnItemClickMain onItemClick;
+    private List<Results> list;
 
     @NonNull
     @Override
@@ -29,7 +35,7 @@ public class RecycleVideoAdapter extends RecyclerView.Adapter<RecycleVideoAdapte
     }
 
     public void setOnItemClick(OnItemClickMain main) {
-        RecycleVideoAdapter.main = main;
+        this.onItemClick = main;
     }
 
     @Override
@@ -39,15 +45,15 @@ public class RecycleVideoAdapter extends RecyclerView.Adapter<RecycleVideoAdapte
 
     }
 
-    public List<ModelMain> getList() {
+    public List<Results> getList() {
         return list;
     }
 
-    public void setList(List<ModelMain> list) {
+    public void setList(List<Results> list) {
         this.list = list;
     }
 
-    void addItem(ModelMain modelMain) {
+    void addItem(Results modelMain) {
         list.add(modelMain);
         notifyDataSetChanged();
     }
@@ -59,29 +65,32 @@ public class RecycleVideoAdapter extends RecyclerView.Adapter<RecycleVideoAdapte
         return list.size();
     }
 
-    public static class VH extends RecyclerView.ViewHolder {
+    public class VH extends RecyclerView.ViewHolder {
         private ImageView imageView;
-        private TextView txt_name, txt_desc;
+        private TextView txt_name;
         private Context context;
 
 
         public VH(@NonNull View itemView, final Context context) {
             super(itemView);
             imageView = itemView.findViewById(R.id.img_episodes);
-            txt_desc = itemView.findViewById(R.id.txt_desc_video);
+
             txt_name = itemView.findViewById(R.id.txt_name_vedio);
             this.context = context;
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    main.onClick(getPosition());
+                    onItemClick.onClick(getAdapterPosition());
                 }
             });
         }
 
-        void bind(ModelMain modelMain) {
-            Glide.with(context.getApplicationContext()).load(modelMain.getSource())
+
+        void bind(Results modelMain) {
+
+            txt_name.setText(modelMain.getName());
+            Glide.with(context.getApplicationContext()).load(R.drawable.youtube)
                     .into(imageView);
 
 

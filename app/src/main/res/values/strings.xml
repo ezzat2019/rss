@@ -1,25 +1,74 @@
 <resources>
-    <string name="app_name">rss</string>
-    <string name="title_activity_main">MainActivity</string>
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="nav_header_title">Android Studio</string>
-    <string name="nav_header_subtitle">android.studio@android.com</string>
-    <string name="nav_header_desc">Navigation header</string>
-    <string name="action_settings">Settings</string>
-    <string name="ads_normal">ca-app-pub-5418159737524729~2370205444</string>
-    <string name="ads_banner">ca-app-pub-5418159737524729/3515766154</string>
-    <string name="banner_ad_unit_id">ca-app-pub-3940256099942544/6300978111</string>
-    <string name="menu_home">Home</string>
-    <string name="menu_gallery">Gallery</string>
-    <string name="menu_slideshow">Slideshow</string>
-    <string name="menu_tools">Tools</string>
-    <string name="menu_share">Share</string>
-    <string name="menu_send">Send</string>
-    <string name="facebook_app_id">363056391046895</string>
-    <string name="fb_login_protocol_scheme">fb363056391046895</string>
+
+    <string name="app_name" translatable="false">MovieBest</string>
+    <string name="title_activity_main" translatable="false">MainActivity</string>
+    <string name="navigation_drawer_open" translatable="false">Open navigation drawer</string>
+    <string name="navigation_drawer_close" translatable="false">Close navigation drawer</string>
+    <string name="nav_header_title" translatable="false">Android Studio</string>
+    <string name="nav_header_subtitle" translatable="false">android.studio@android.com</string>
+    <string name="nav_header_desc" translatable="false">Navigation header</string>
+    <string name="action_settings" translatable="false">Settings</string>
+    <string name="ads_normal" translatable="false">ca-app-pub-5418159737524729~2370205444</string>
+    <string name="ads_banner" translatable="false">ca-app-pub-5418159737524729/3515766154</string>
+    <string name="banner_ad_unit_id" translatable="false">ca-app-pub-3940256099942544/6300978111</string>
+    <string name="menu_home" translatable="false">Home</string>
+    <string name="menu_gallery" translatable="false">Gallery</string>
+    <string name="menu_slideshow" translatable="false">Slideshow</string>
+    <string name="menu_tools" translatable="false">Tools</string>
+    <string name="menu_share" translatable="false">Share</string>
+    <string name="menu_send" translatable="false">Send</string>
+    <string name="facebook_app_id" translatable="false">363056391046895</string>
+    <string name="fb_login_protocol_scheme" translatable="false">fb363056391046895</string>
 
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="appwidget_text">No moive selected</string>
+    <string name="add_widget">Add widget</string>
+    <string name="my_title_dialog_internet">No Internet Connection</string>
+    <string name="try_again">Try Again</string>
+    <string name="cancel">cancel</string>
+    <string name="dialog_message">turn on internet connection and pressed try again</string>
+    <string name="Populer">Populer Movies</string>
+    <string name="trend">Trend</string>
+    <string name="login">Login</string>
+    <string name="communicate">Communicate</string>
+    <string name="shark">Sharks and judgments</string>
+    <string name="privacy">Privacy policy</string>
+    <string name="create_account">Create an account</string>
+    <string name="advertisement">Advertisement</string>
+    <string name="login_with_account">Login with account</string>
+    <string name="meesage">You need an account to watch your favorite            programs on different devices</string>
+    <string name="email">Email</string>
+    <string name="password">password</string>
+    <string name="dont">I don`t have account click</string>
+    <string name="signUp">SignUp</string>
+    <string name="create">Create a new account</string>
+    <string name="accept">Accept Terms and Conditions</string>
+    <string name="recviveٍ">I do not want to receive ad messages from SAHAHID</string>
+    <string name="name">Name</string>
+    <string name="name2">Name :</string>
+    <string name="email2">Email :</string>
+    <string name="preferd">Goto preferd Item</string>
+    <string name="logout">Logout</string>
+    <string name="error_toast">press again to exit </string>
+    <string name="success">Success</string>
+    <string name="yes">Yes</string>
+    <string name="check_internet">check internet connection</string>
+    <string name="incorect_email">in correct email or password</string>
+    <string name="error_happen">some error happend</string>
+    <string name="no_trailer">no trailer avalable now</string>
+    <string name="sahed">shaed</string>
+    <string name="share">share</string>
+    <string name="add">add</string>
+    <string name="movie">Movie</string>
+    <string name="todo">tido</string>
+    <string name="attention">Attention !</string>
+    <string name="attention2">"you should login with your accont if you want to create neew account click ok"</string>
+    <string name="ok">Ok</string>
+    <string name="pass">password should be at least 6 char</string>
+    <string name="intent">"Hey check out my video at:"</string>
+    <string name="ads">"Are you sure want not display ADS"</string>
+    <string name="human">this is image for human</string>
+    <string name="profile">profile picture</string>
 </resources>

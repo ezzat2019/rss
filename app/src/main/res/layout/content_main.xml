@@ -4,59 +4,75 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    android:id="@+id/main"
     tools:context=".MainActivity"
     tools:showIn="@layout/app_bar_main">
 
-
-    <com.google.android.material.tabs.TabLayout
-        android:id="@+id/tab"
-
+    <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-
-        android:layout_marginTop="0dp"
-        android:layout_marginEnd="0dp"
-        android:background="@color/colorPrimary"
-        app:tabGravity="center"
-        app:tabMode="scrollable"
-        app:tabSelectedTextColor="#FFFFFF"
-        app:tabTextColor="@color/gray_300">
-
-        <com.google.android.material.tabs.TabItem
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Monday"
-
-
-            />
-
-        <com.google.android.material.tabs.TabItem
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Tuesday" />
-
-        <com.google.android.material.tabs.TabItem
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Wednesday" />
-    </com.google.android.material.tabs.TabLayout>
-
-    <com.example.programmer.rss.custom_classes.CustomViewPager
-        android:id="@+id/view_pager"
+        android:id="@+id/rec_search"
+        android:fitsSystemWindows="true"
+        android:layout_marginTop="?attr/actionBarSize"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        />
+    <ScrollView
+      android:layout_marginTop="?attr/actionBarSize"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
+        android:id="@+id/realtive_view"
+        android:visibility="visible"
+
+        android:background="?android:attr/selectableItemBackground">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="visible"
+
+            android:background="?android:attr/selectableItemBackground">
+
+            <com.daimajia.slider.library.SliderLayout
+                android:id="@+id/slider2"
+                android:layout_width="match_parent"
+                android:contentDescription="@string/movie"
+
+                android:layout_height="260dp" />
+
+            <com.daimajia.slider.library.Indicators.PagerIndicator
+                android:id="@+id/custom_indicator"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/colorAccent"
+
+                android:gravity="center"
+                app:selected_color="@color/colorAccent" />
 
 
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="0dp"
-        android:layout_marginTop="48dp"
-        android:layout_marginEnd="0dp"
-        android:layout_marginBottom="0dp"
-        android:fitsSystemWindows="true" />
+
+            <FrameLayout
+                android:id="@+id/frag1"
+                android:layout_width="match_parent"
+                android:layout_height="220dp"
+                android:layout_below="@+id/slider2"
+                >
+                <include layout="@layout/item_rectangle1" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/frag2"
+                android:layout_width="match_parent"
+                android:layout_height="220dp"
+                android:layout_below="@+id/frag1"
+                >
+
+                <include layout="@layout/item_rectangle2" />
+            </FrameLayout>
+
+
+
+        </RelativeLayout>
+    </ScrollView>
+
+
 </RelativeLayout>

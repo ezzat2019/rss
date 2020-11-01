@@ -20,7 +20,15 @@ public class ItemEmail {
     @ColumnInfo(name = "email")
     private String email;
     @ColumnInfo(name = "url_image")
-    private int url;
+    private String url;
+
+
+    public ItemEmail(int id, String email, String url) {
+        this.id = id;
+        this.email = email;
+        this.url = url;
+
+    }
 
     @Ignore
     public ItemEmail(String email) {
@@ -28,13 +36,7 @@ public class ItemEmail {
     }
 
     @Ignore
-    public ItemEmail(String email, int url) {
-        this.email = email;
-        this.url = url;
-    }
-
-    public ItemEmail(int id, String email, int url) {
-        this.id = id;
+    public ItemEmail(String email, String url) {
         this.email = email;
         this.url = url;
     }
@@ -47,11 +49,11 @@ public class ItemEmail {
         this.email = email;
     }
 
-    public int getUrl() {
+    public String getUrl() {
         return url;
     }
 
-    public void setUrl(int url) {
+    public void setUrl(String url) {
         this.url = url;
     }
 

@@ -44,14 +44,11 @@ public class SignUpActivity extends AppCompatActivity {
     // ui
     private EditText ed_email, ed_password;
     private Button btn_create;
-    private LoginButton loginButton;
-    private CheckBox checkBox1, checkBox2;
     // var
     private String email, password;
     private CallbackManager callbackManager;
     private FirebaseAuth mAuth;
     private SharedPreferences sharedPreferences;
-    private RepositryEmail repositryEmail;
     private Handler handler;
     private Runnable runnable;
     //Facebook login button
@@ -140,7 +137,7 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     private void inalizeRep() {
-        repositryEmail = RepositryEmail.getInstance(getApplicationContext());
+        RepositryEmail repositryEmail = RepositryEmail.getInstance(getApplicationContext());
     }
 
     private void inializeMAuth() {
@@ -154,7 +151,7 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     private void inializefaceBook() {
-        loginButton = findViewById(R.id.login_button);
+        LoginButton loginButton = findViewById(R.id.login_button);
         loginButton.setReadPermissions(Arrays.asList("email", "public_profile"));
         // Creating CallbackManager
         callbackManager = CallbackManager.Factory.create();
@@ -173,7 +170,7 @@ public class SignUpActivity extends AppCompatActivity {
 
             @Override
             public void onCancel() {
-                Toast.makeText(SignUpActivity.this, "cancel", Toast.LENGTH_SHORT).show();
+                Toast.makeText(SignUpActivity.this, getString(R.string.cancel), Toast.LENGTH_SHORT).show();
                 createCheckStsn();
 
             }
@@ -217,7 +214,7 @@ public class SignUpActivity extends AppCompatActivity {
                             editor.putString("email", email);
                             editor.commit();
                             //repositryEmail.insert(new ItemEmail(email, sharedPreferences.getInt("prefer", 0)));
-                            Toast.makeText(SignUpActivity.this, "success", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(SignUpActivity.this, getString(R.string.success), Toast.LENGTH_SHORT).show();
 
                             mAuth.createUserWithEmailAndPassword(email, id).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                                 @Override
@@ -245,8 +242,8 @@ public class SignUpActivity extends AppCompatActivity {
 
 
     private void createCheckBox() {
-        checkBox1 = findViewById(R.id.checkbox1);
-        checkBox2 = findViewById(R.id.checkbox2);
+        CheckBox checkBox1 = findViewById(R.id.checkbox1);
+        CheckBox checkBox2 = findViewById(R.id.checkbox2);
 
         checkBox1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -276,7 +273,7 @@ public class SignUpActivity extends AppCompatActivity {
 
                 if (email.equals("") || !Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
                     ed_email.setBackground(getResources().getDrawable(R.drawable.bg_edittext_normal));
-                    ed_email.setError("enter correct email syntax");
+                    ed_email.setError(getString(R.string.email));
                     isEmail = false;
                 } else {
                     ed_email.setBackground(getResources().getDrawable(R.drawable.bg_edittext_focused));
@@ -286,7 +283,7 @@ public class SignUpActivity extends AppCompatActivity {
 
                 if (password.length() < 6) {
                     ed_password.setBackground(getResources().getDrawable(R.drawable.bg_edittext_normal));
-                    ed_password.setError("password should be at least 6 char");
+                    ed_password.setError(getString(R.string.pass));
                     isPass = false;
 
                 } else {
@@ -303,13 +300,13 @@ public class SignUpActivity extends AppCompatActivity {
                             if (task.isSuccessful()) {
 
 
-                                Toast.makeText(SignUpActivity.this, "yes", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(SignUpActivity.this, getString(R.string.yes), Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
                                 intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                                 startActivity(intent);
                                 finish();
                             } else {
-                                Toast.makeText(SignUpActivity.this, "check internet connection", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(SignUpActivity.this, getString(R.string.check_internet), Toast.LENGTH_SHORT).show();
                             }
 
                         }
@@ -349,7 +346,7 @@ public class SignUpActivity extends AppCompatActivity {
 
                 if (email.equals("") || !Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
                     ed_email.setBackground(getResources().getDrawable(R.drawable.bg_edittext_normal));
-                    ed_email.setError("enter correct email syntax");
+                    ed_email.setError(getString(R.string.email));
                     isEmail = false;
                 } else {
                     ed_email.setBackground(getResources().getDrawable(R.drawable.bg_edittext_focused));
@@ -368,7 +365,7 @@ public class SignUpActivity extends AppCompatActivity {
 
                 if (password.length() < 6) {
                     ed_password.setBackground(getResources().getDrawable(R.drawable.bg_edittext_normal));
-                    ed_password.setError("password should be at least 6 char");
+                    ed_password.setError(getString(R.string.pass));
                     isPass = false;
 
                 } else {

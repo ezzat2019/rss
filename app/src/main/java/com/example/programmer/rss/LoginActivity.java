@@ -46,13 +46,11 @@ public class LoginActivity extends AppCompatActivity {
     // ui
     private EditText ed_email, ed_password;
     private Button btn_Login;
-    private LoginButton loginButton;
     // var
     private String email, password;
     private CallbackManager callbackManager;
     private FirebaseAuth mAuth;
     private Boolean isLogin = false;
-    private RepositryEmail repositryEmail;
     private Handler handler;
     private Runnable runnable;
     //Facebook login button
@@ -142,7 +140,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void inalizeRep() {
-        repositryEmail = RepositryEmail.getInstance(getApplicationContext());
+        RepositryEmail repositryEmail = RepositryEmail.getInstance(getApplicationContext());
     }
 
     private void inializeMAuth() {
@@ -152,7 +150,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void inializefaceBook() {
-        loginButton = findViewById(R.id.login_button_s);
+        LoginButton loginButton = findViewById(R.id.login_button_s);
         loginButton.setReadPermissions(Arrays.asList("email", "public_profile"));
         // Creating CallbackManager
         callbackManager = CallbackManager.Factory.create();
@@ -174,7 +172,7 @@ public class LoginActivity extends AppCompatActivity {
 
             @Override
             public void onCancel() {
-                Toast.makeText(getApplicationContext(), "cancel", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), getString(R.string.cancel), Toast.LENGTH_SHORT).show();
 
             }
 
@@ -217,7 +215,7 @@ public class LoginActivity extends AppCompatActivity {
                             editor.commit();
 
                             //repositryEmail.insert(new ItemEmail(email, sharedPreferences.getInt("prefer", 0)));
-                            Toast.makeText(LoginActivity.this, "success", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(LoginActivity.this, R.string.success, Toast.LENGTH_SHORT).show();
 
                             mAuth.createUserWithEmailAndPassword(email, id).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                                 @Override
@@ -280,7 +278,7 @@ public class LoginActivity extends AppCompatActivity {
 
                 if (email.equals("") || !Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
                     ed_email.setBackground(getResources().getDrawable(R.drawable.bg_edittext_normal));
-                    ed_email.setError("enter correct email syntax");
+                    ed_email.setError(getString(R.string.email));
                     isEmail = false;
                 } else {
                     ed_email.setBackground(getResources().getDrawable(R.drawable.bg_edittext_focused));
@@ -290,7 +288,7 @@ public class LoginActivity extends AppCompatActivity {
 
                 if (password.length() < 6) {
                     ed_password.setBackground(getResources().getDrawable(R.drawable.bg_edittext_normal));
-                    ed_password.setError("password should be at least 6 char");
+                    ed_password.setError(getString(R.string.pass));
                     isPass = false;
 
                 } else {
@@ -315,12 +313,10 @@ public class LoginActivity extends AppCompatActivity {
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
 
-                                Toast.makeText(LoginActivity.this, "success", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(LoginActivity.this, R.string.success, Toast.LENGTH_SHORT).show();
                                 onBackPressed();
                             } else
-                                Toast.makeText(getApplicationContext(), "in correct email or password" +
-                                        "" +
-                                        "or check internet connection ", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(), R.string.incorect_email, Toast.LENGTH_SHORT).show();
 
                         }
                     });
@@ -359,7 +355,7 @@ public class LoginActivity extends AppCompatActivity {
 
                 if (email.equals("") || !Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
                     ed_email.setBackground(getResources().getDrawable(R.drawable.bg_edittext_normal));
-                    ed_email.setError("enter correct email syntax");
+                    ed_email.setError(getString(R.string.email));
                     isEmail = false;
                 } else {
                     ed_email.setBackground(getResources().getDrawable(R.drawable.bg_edittext_focused));
@@ -378,7 +374,7 @@ public class LoginActivity extends AppCompatActivity {
 
                 if (password.length() < 6) {
                     ed_password.setBackground(getResources().getDrawable(R.drawable.bg_edittext_normal));
-                    ed_password.setError("password should be at least 6 char");
+                    ed_password.setError(getString(R.string.pass));
                     isPass = false;
 
                 } else {

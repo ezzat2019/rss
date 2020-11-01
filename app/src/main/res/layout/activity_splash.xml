@@ -11,12 +11,9 @@
     <ImageView
         android:id="@+id/image"
         android:layout_width="70dp"
-
+        android:contentDescription="@string/movie"
         android:layout_height="55dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="295dp"
-        android:layout_marginBottom="27dp"
+       android:layout_centerInParent="true"
         android:src="@drawable/icon_sahed" />
 
     <ProgressBar
@@ -26,10 +23,8 @@
         android:layout_height="25dp"
 
         android:layout_below="@+id/image"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="28dp"
-        android:layout_marginBottom="347dp" />
+       android:layout_marginTop="16dp"
+        android:layout_centerHorizontal="true"/>
 
     <com.google.android.gms.ads.AdView
         android:id="@+id/adView"
@@ -38,7 +33,7 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         ads:adSize="SMART_BANNER"
-        ads:adUnitId="ca-app-pub-3940256099942544/6300978111"></com.google.android.gms.ads.AdView>
+        ads:adUnitId="ca-app-pub-3940256099942544/6300978111" />
 
 
 </RelativeLayout>

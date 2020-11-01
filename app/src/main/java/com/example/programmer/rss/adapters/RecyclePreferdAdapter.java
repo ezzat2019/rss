@@ -5,7 +5,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -48,10 +47,6 @@ public class RecyclePreferdAdapter extends RecyclerView.Adapter<RecyclePreferdAd
 
     }
 
-    public void addItem(ItemEmail modelMain) {
-        list.add(modelMain);
-        notifyDataSetChanged();
-    }
 
     @Override
     public int getItemCount() {
@@ -62,15 +57,15 @@ public class RecyclePreferdAdapter extends RecyclerView.Adapter<RecyclePreferdAd
 
     public static class VH extends RecyclerView.ViewHolder {
         private ImageView imageView;
-        private TextView txt_name, txt_desc;
+
         private Context context;
 
 
         public VH(@NonNull View itemView, final Context context) {
             super(itemView);
             imageView = itemView.findViewById(R.id.img_episodes);
-            txt_desc = itemView.findViewById(R.id.txt_desc_video);
-            txt_name = itemView.findViewById(R.id.txt_name_vedio);
+
+
             this.context = context;
 
             itemView.setOnClickListener(new View.OnClickListener() {

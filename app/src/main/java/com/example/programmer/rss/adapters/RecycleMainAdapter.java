@@ -1,12 +1,10 @@
 package com.example.programmer.rss.adapters;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Filter;
-import android.widget.Filterable;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -14,59 +12,31 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.programmer.rss.R;
 import com.example.programmer.rss.models.ModelMain;
+import com.example.programmer.rss.models.Results;
 import com.example.programmer.rss.ui.OnItemClickMain;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import de.hdodenhof.circleimageview.CircleImageView;
 
-public class RecycleMainAdapter extends RecyclerView.Adapter<RecycleMainAdapter.VH> implements Filterable {
-    protected static OnItemClickMain main;
-    private static List<ModelMain> alll;
-    private List<ModelMain> list;
-    private List<ModelMain> all;
-    private Filter filter = new Filter() {
-        @Override
-        protected FilterResults performFiltering(CharSequence charSequence) {
-            String s = charSequence.toString().trim();
-            for (ModelMain modelMain : all) {
-                if (String.valueOf(modelMain.getSource()).contains(s)) {
-                    alll.add(modelMain);
-                }
-            }
+public class RecycleMainAdapter extends RecyclerView.Adapter<RecycleMainAdapter.VH> {
+    public final static String BASE_URL_IMAGE = "https://image.tmdb.org/t/p/w500/";
+    private OnItemClickMain main;
+    private List<Results> list;
 
-            FilterResults results = new FilterResults();
-            results.values = alll;
-            Log.d("eeee55", alll.size() + "");
+    public RecycleMainAdapter(OnItemClickMain main) {
+        this.main = main;
+    }
 
-            return results;
-        }
-
-        @Override
-        protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
-            list.clear();
-
-            Log.d("eeeee2", filterResults.values + "");
-            if (filterResults.values != null)
-                list.addAll((List) filterResults.values);
-
-
-            notifyDataSetChanged();
-            alll.clear();
-        }
-    };
 
     @NonNull
     @Override
     public VH onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_rec_main, parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_rec_rectangle, parent, false);
         return new VH(v, parent.getContext());
     }
 
-    public void setOnItemClick(OnItemClickMain main) {
-        RecycleMainAdapter.main = main;
-    }
 
     @Override
     public void onBindViewHolder(@NonNull VH holder, int position) {
@@ -75,52 +45,55 @@ public class RecycleMainAdapter extends RecyclerView.Adapter<RecycleMainAdapter.
 
     }
 
-    public List<ModelMain> getList() {
+    public List<Results> getList() {
         return list;
     }
 
-    public void setList(List<ModelMain> list) {
+    public void setList(List<Results> list) {
         this.list = list;
-        all = new ArrayList(list);
-        alll = new ArrayList<>();
+        List<ModelMain> all = new ArrayList(list);
+        List<ModelMain> alll = new ArrayList<>();
 
     }
 
-    void addItem(ModelMain modelMain) {
-        list.add(modelMain);
-        notifyDataSetChanged();
-    }
 
     @Override
     public int getItemCount() {
         return list.size();
     }
 
-    @Override
-    public Filter getFilter() {
-        return filter;
-    }
 
-    public static class VH extends RecyclerView.ViewHolder {
-        private CircleImageView circleImageView;
+    public class VH extends RecyclerView.ViewHolder {
+        private ImageView imageView;
         private Context context;
 
 
         public VH(@NonNull View itemView, final Context context) {
             super(itemView);
-            circleImageView = itemView.findViewById(R.id.main_image);
+            imageView = itemView.findViewById(R.id.image_frag_all);
             this.context = context;
-            circleImageView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    main.onClick(getPosition());
-                }
-            });
+            if (itemView != null) {
+                itemView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        main.onClick(getAdapterPosition());
+                    }
+                });
+            }
+
         }
 
-        void bind(ModelMain modelMain) {
-            Glide.with(context.getApplicationContext()).load(modelMain.getSource())
-                    .into(circleImageView);
+        void bind(Results modelMain) {
+            if (modelMain==null)
+            {
+                Picasso.with(context).load(R.drawable.profile).into(imageView);
+            }
+            else
+            {
+                Glide.with(context.getApplicationContext()).load(BASE_URL_IMAGE.concat(modelMain.getPoster_path()))
+                        .into(imageView);
+            }
+
 
         }
     }

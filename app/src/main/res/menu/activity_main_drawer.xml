@@ -7,24 +7,24 @@
         <item
             android:id="@+id/nav_login"
 
-            android:title="Login" />
+            android:title="@string/login" />
         <item
             android:id="@+id/nav_create_an_account"
 
-            android:title="Create an account" />
+            android:title="@string/create_account" />
 
     </group>
 
-    <item android:title="Communicate">
+    <item android:title="@string/communicate">
         <menu>
             <item
                 android:id="@+id/nav_sharks_and_judgments"
 
-                android:title="Sharks and judgments" />
+                android:title="@string/shark" />
             <item
                 android:id="@+id/nav_privacy_policy"
 
-                android:title="Privacy policy" />
+                android:title="@string/privacy" />
         </menu>
     </item>
 

@@ -16,10 +16,9 @@ public class RepositryPrefer {
 
     private static QueryItemPrefer queryItemPrefer;
     private static RepositryPrefer mInstance;
-    private MainDataBase dataBase;
 
     public RepositryPrefer(Context context) {
-        dataBase = MainDataBase.getInstance(context);
+        MainDataBase dataBase = MainDataBase.getInstance(context);
         queryItemPrefer = dataBase.queryItemPrefer();
     }
 

@@ -17,9 +17,6 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class ProfileActivity extends AppCompatActivity {
 
     private static Boolean isLogin = true;
-    // ui
-    private TextView txt_name, txt_email;
-    private CircleImageView imageView;
     // var
     private SharedPreferences sharedPreferences;
     private FirebaseAuth mAuth;
@@ -42,7 +39,7 @@ public class ProfileActivity extends AppCompatActivity {
 
     private void createImage() {
 
-        imageView = findViewById(R.id.img_profile);
+        CircleImageView imageView = findViewById(R.id.img_profile);
         String url = sharedPreferences.getString("img_url", "");
         if (!url.equals("")) {
             Glide.with(getApplicationContext()).load(url).into(imageView);
@@ -54,8 +51,9 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     private void createTextView() {
-        txt_email = findViewById(R.id.txt_email);
-        txt_name = findViewById(R.id.txt_name);
+        TextView txt_email = findViewById(R.id.txt_email);
+        // ui
+        TextView txt_name = findViewById(R.id.txt_name);
 
         txt_name.setText(sharedPreferences.getString("name", "Name"));
         txt_email.setText(sharedPreferences.getString("email", "Email"));

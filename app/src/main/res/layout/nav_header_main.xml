@@ -14,6 +14,7 @@
         android:id="@+id/imageView"
         android:layout_width="38dp"
         android:layout_height="38dp"
+        android:contentDescription="@string/movie"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:background="@drawable/icon_sahed" />

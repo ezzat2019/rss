@@ -10,15 +10,16 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.programmer.rss.MainActivity;
 import com.example.programmer.rss.R;
-import com.example.programmer.rss.models.ModelMain;
+import com.example.programmer.rss.models.Results;
 import com.example.programmer.rss.ui.OnItemClickMain;
 
 import java.util.List;
 
 public class RecycleGridAdapter extends RecyclerView.Adapter<RecycleGridAdapter.VH> {
     protected static OnItemClickMain main;
-    private List<ModelMain> list;
+    private List<Results> list;
 
     @NonNull
     @Override
@@ -38,18 +39,14 @@ public class RecycleGridAdapter extends RecyclerView.Adapter<RecycleGridAdapter.
 
     }
 
-    public List<ModelMain> getList() {
+    public List<Results> getList() {
         return list;
     }
 
-    public void setList(List<ModelMain> list) {
+    public void setList(List<Results> list) {
         this.list = list;
     }
 
-    void addItem(ModelMain modelMain) {
-        list.add(modelMain);
-        notifyDataSetChanged();
-    }
 
     @Override
     public int getItemCount() {
@@ -68,13 +65,13 @@ public class RecycleGridAdapter extends RecyclerView.Adapter<RecycleGridAdapter.
             imageView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    main.onClick(getPosition());
+                    main.onClick(getAdapterPosition());
                 }
             });
         }
 
-        void bind(ModelMain modelMain) {
-            Glide.with(context.getApplicationContext()).load(modelMain.getSource())
+        void bind(Results modelMain) {
+            Glide.with(context.getApplicationContext()).load(MainActivity.BASE_URL_IMAGE.concat(modelMain.getBackdrop_path()))
                     .into(imageView);
 
         }

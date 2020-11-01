@@ -15,10 +15,9 @@ public class RepositryEmail {
 
     private static QueryItemEmail queryItemEmail;
     private static RepositryEmail mInstance;
-    private MainDataBase dataBase;
 
     public RepositryEmail(Context context) {
-        dataBase = MainDataBase.getInstance(context);
+        MainDataBase dataBase = MainDataBase.getInstance(context);
         queryItemEmail = dataBase.queryItemEmail();
     }
 
@@ -47,7 +46,8 @@ public class RepositryEmail {
 
         @Override
         protected Void doInBackground(Void... voids) {
-            queryItemEmail.insertEmail(modelMain);
+            if (modelMain != null)
+                queryItemEmail.insertEmail(modelMain);
             return null;
         }
     }

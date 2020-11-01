@@ -16,7 +16,7 @@ public interface QueryItemEmail {
     @Query("select * from user where email=:my_e")
     LiveData<List<ItemEmail>> getEmail(String my_e);
 
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertEmail(ItemEmail email);
 
 
